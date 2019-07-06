@@ -1,0 +1,1 @@
+Scripts criados em Python para automatizar tarefas
