@@ -6,6 +6,7 @@ import csv
 from bs4 import BeautifulSoup
 import itertools
 import os.path
+from datetime import datetime
 
 ### === CONFIGURATION === ###
 
@@ -22,7 +23,6 @@ search_by = 'staff'
 ### ===================== ###
 
 csrf_validity = True
-
 
 class IgpSpider(scrapy.Spider):
     name = "igp"
@@ -42,35 +42,20 @@ class IgpSpider(scrapy.Spider):
     def get_data(self, response):
         global last_staff_id_searched
         invalid_staff_ids = get_invalid_staff_ids()
-        print(f'LAST_STAFF_ID_SEARCHED: {last_staff_id_searched}')
+
+        if any(f'{last_staff_id_searched}' in i for i in invalid_staff_ids):
+            last_staff_id_searched += 1
 
         if not any(f'{last_staff_id_searched}' in i for i in invalid_staff_ids):
             if csrf_validity:
-                yield scrapy.http.JsonRequest(url=f'https://igpmanager.com/index.php?action=fetch&d={search_by}&id={last_staff_id_searched}&csrfName={csrf_name}&csrfToken=   {csrf_token}&_={last_part_url}', callback=self.filter_data, dont_filter=True)
-
-        # for employee_id in itertools.count(last_staff_id_searched, 1):
-        #     if not any(f'{employee_id}' in i for i in invalid_staff_ids):
-        #         if csrf_validity:
-        #             # if employee_id == 20:
-        #             #     break
-
-        #             # print(f'REQUESTING ID {employee_id}')
-        #             yield scrapy.http.JsonRequest(url=f'https://igpmanager.com/index.php?action=fetch&d={search_by}&id={employee_id}&csrfName={csrf_name}&csrfToken=   {csrf_token}&_={last_part_url}', callback=self.filter_data, dont_filter=True)
-
-        #         else:
-        #             break
-
-        #     continue
-            # 11024065 CD
-            # 11024066 TD
-            # 11024067 DR
-            # 10946609 FREE CD
+                yield scrapy.http.JsonRequest(url=f'https://igpmanager.com/index.php?action=fetch&d={search_by}&id={last_staff_id_searched}&csrfName={csrf_name}&csrfToken=   {csrf_token}&_={last_part_url}', callback=self.filter_data)
 
     def filter_data(self, response):
         global last_staff_id_searched
         last_staff_id_searched += 1
-
         employee_id = re.search(r'\d+', response.url.split('&')[2]).group(0)
+
+        record_log(f'REQUESTED ID {employee_id}')
         record_searched_staff_ids(employee_id)
 
         data = json.loads(response.body)
@@ -81,9 +66,8 @@ class IgpSpider(scrapy.Spider):
         if is_csrf_valid:
             if is_employee_valid:
                 employee_type = response.url.split('&')[1]
-                is_cd = response.xpath(
-                    "//text()[contains(.,'Chief Designer')]").get()
-                # is_td = response.xpath("//text()[contains(.,'Technical Director')]").get() # Impossible to develop. How to know if it's good since the star is based on manager's level?
+                is_cd = response.xpath("//text()[contains(.,'Chief Designer')]").get()
+                available = response.xpath("//text()[contains(.,'Buy now')]").get()
 
                 if employee_type == 'd=staff':
                     if is_cd:
@@ -113,41 +97,38 @@ class IgpSpider(scrapy.Spider):
                         employee_url = f'https://igpmanager.com/app/d=staff&id={employee_id}&tab=attributes'
 
                         if strength_attribute and weakness_attribute:
-                            if strength_attribute[0] == 'Acceleration':
-                                strength_attribute[0] = 'Aceleração'
+                            if available:
+                                if strength_attribute[0] == 'Acceleration':
+                                    strength_attribute[0] = 'Aceleração'
 
-                            elif strength_attribute[0] == 'Braking':
-                                strength_attribute[0] = 'Frenagem'
+                                elif strength_attribute[0] == 'Braking':
+                                    strength_attribute[0] = 'Frenagem'
 
-                            elif strength_attribute[0] == 'Handling':
-                                strength_attribute[0] = 'Dirigibilidade'
+                                elif strength_attribute[0] == 'Handling':
+                                    strength_attribute[0] = 'Dirigibilidade'
 
-                            else:
-                                strength_attribute[0] = 'Aerodinâmica'
+                                else:
+                                    strength_attribute[0] = 'Aerodinâmica'
 
-                            if weakness_attribute[0] == 'Cooling':
-                                weakness_attribute[0] = 'Resfriamento'
+                                if weakness_attribute[0] == 'Cooling':
+                                    weakness_attribute[0] = 'Resfriamento'
 
-                            else:
-                                weakness_attribute[0] = 'Confiabilidade'
+                                else:
+                                    weakness_attribute[0] = 'Confiabilidade'
 
-                            print(f'ID {employee_id} RECORDED')
-                            record_good_cd(
-                                employee_id, level, strength_attribute[0], weakness_attribute[0], employee_url)
+                                record_log(f'ID {employee_id} RECORDED')
+                                record_good_cd(employee_id, level, strength_attribute[0], weakness_attribute[0], employee_url)
             else:
-                print(f'INVALID ID {employee_id}')
+                record_log(f'INVALID ID {employee_id}')
                 record_invalid_staff_ids(employee_id)
 
         else:
             global csrf_validity
             csrf_validity = False
-            print('INVALID CSRF')
+            record_log(f'INVALID CSRF ID {employee_id}')
             record_searched_staff_ids(employee_id, 2)
 
-        print(
-            f'LAST_STAFF_ID_SEARCHED APÓS INCREMENTO: {last_staff_id_searched}')
-        # NÃO ESTÁ SENDO CHAMADO https://github.com/scrapy/scrapy/issues/2754
-        self.get_data(response)
+        return self.get_data(response)
 
 
 def record_good_cd(employee_id, level, strength, weakness, url):
@@ -200,6 +181,14 @@ def get_invalid_staff_ids():
             if invalid_staff_ids:
                 return invalid_staff_ids
     return []
+
+def record_log(message):
+    now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+    with open('staff/log.csv', 'a') as file:
+        writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        
+        writer.writerow([f'{message} AT {now}'])
 
 
 last_staff_id_searched = get_last_valid_staff_id_searched()
