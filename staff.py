@@ -4,7 +4,6 @@ import json
 import re
 import csv
 from bs4 import BeautifulSoup
-import itertools
 import os.path
 from datetime import datetime
 
