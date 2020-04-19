@@ -55,6 +55,7 @@ class IgpSpider(scrapy.Spider):
         last_staff_id_searched += 1
         employee_id = re.search(r'\d+', response.url.split('&')[2]).group(0)
 
+        print(f'REQUESTED ID {employee_id}')
         record_log(f'REQUESTED ID {employee_id}')
         record_searched_staff_ids(employee_id)
 
@@ -116,15 +117,18 @@ class IgpSpider(scrapy.Spider):
                                 else:
                                     weakness_attribute[0] = 'Confiabilidade'
 
+                                print(f'ID {employee_id} RECORDED')
                                 record_log(f'ID {employee_id} RECORDED')
                                 record_good_cd(employee_id, level, strength_attribute[0], weakness_attribute[0], employee_url)
             else:
+                print(f'INVALID ID {employee_id}')
                 record_log(f'INVALID ID {employee_id}')
                 record_invalid_staff_ids(employee_id)
 
         else:
             global csrf_validity
             csrf_validity = False
+            print(f'INVALID CSRF ID {employee_id}')
             record_log(f'INVALID CSRF ID {employee_id}')
             record_searched_staff_ids(employee_id, 2)
 
