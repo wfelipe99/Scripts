@@ -62,14 +62,18 @@ class DriverSpider(scrapy.Spider):
             if is_employee_valid:
                 available = response.xpath("//text()[contains(.,'Buy now')]").get()
 
-                starRating = data['vars']['starRating']
-                sTalent = data['vars']['sTalent']
+                if data['vars']:
+                    starRating = data['vars']['starRating']
+                    sTalent = data['vars']['sTalent']
 
-                level = BeautifulSoup(starRating, 'lxml').body.find(text=True, recursive=False)
-                level = int(re.search(r'\d+', level).group(0))
+                    level = BeautifulSoup(starRating, 'lxml').body.find(text=True, recursive=False)
+                    level = int(re.search(r'\d+', level).group(0))
 
-                talent = BeautifulSoup(sTalent, 'lxml').body.span.find(text=True, recursive=False)
-                talent = int(re.search(r'\d+', talent).group(0))
+                    talent = BeautifulSoup(sTalent, 'lxml').body.span.find(text=True, recursive=False)
+                    talent = int(re.search(r'\d+', talent).group(0))
+                
+                else:
+                    talent = 0 # talent = 0 if the driver is racing. If he's racing it's because he's already in a team
 
                 if talent == 20:
                     if available:
