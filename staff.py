@@ -11,21 +11,16 @@ from datetime import datetime
 ### === CONFIGURATION === ###
 
 # LOGIN
-csrf_name = 'e9bb90f48da6b4bafbfc27467595978f'
-csrf_token = '03d42f1e7d1ec992bfc8a2ebb0f2da61ff39b265cc54d4de3ade250d130c8b4e144a5c45e83781327548991dd70bd9ada2a045b966234499677d73fb3b16f68d'
-last_part_url = '1587102544909'
-
-# OPTIONS
-# 'driver' - search for pilot # not developed yet
-# 'staff' - search for staff
-search_by = 'staff'
+csrf_name = 'fb37556b11d367c975423a68bfca5398'
+csrf_token = '60b5d37b6ab980b7d9b3180d374d73709644123db60cfdbc325a944330126072a2e5972d28002058c7a5083dcd800a562cb069e0201622321c00e208aa0e2d94'
+last_part_url = '1587259691878'
 
 ### ===================== ###
 
 csrf_validity = True
 
-class IgpSpider(scrapy.Spider):
-    name = "igp"
+class StaffSpider(scrapy.Spider):
+    name = "staff"
 
     url = 'https://igpmanager.com/app/p=login'
     login_url = 'https://igpmanager.com/index.php?action=send&addon=igp&type=login&jsReply=login'
@@ -33,8 +28,8 @@ class IgpSpider(scrapy.Spider):
 
     def parse(self, response):
         data = {
-            'loginUsername': 'lewishamilton@mercedes.com',
-            'loginPassword': 'L@hmiTn!12#'
+            'loginUsername': 'kylenolan19859@hotmail.com',
+            'loginPassword': '@kyleNolaN5984'
         }
 
         yield scrapy.FormRequest(url=self.login_url, formdata=data, callback=self.get_data)
@@ -48,7 +43,7 @@ class IgpSpider(scrapy.Spider):
 
         if not any(f'{last_staff_id_searched}' in i for i in invalid_staff_ids):
             if csrf_validity:
-                yield scrapy.http.JsonRequest(url=f'https://igpmanager.com/index.php?action=fetch&d={search_by}&id={last_staff_id_searched}&csrfName={csrf_name}&csrfToken=   {csrf_token}&_={last_part_url}', callback=self.filter_data)
+                yield scrapy.http.JsonRequest(url=f'https://igpmanager.com/index.php?action=fetch&d=staff&id={last_staff_id_searched}&csrfName={csrf_name}&csrfToken={csrf_token}&_={last_part_url}', callback=self.filter_data)
 
     def filter_data(self, response):
         global last_staff_id_searched
@@ -72,33 +67,26 @@ class IgpSpider(scrapy.Spider):
 
                 if employee_type == 'd=staff':
                     if is_cd:
-                        good_strength = ['Acceleration',
-                                         'Braking', 'Handling', 'Downforce']
+                        good_strength = ['Acceleration','Braking', 'Handling', 'Downforce']
                         good_weakness = ['Cooling', 'Reliability']
                         starRating = data['vars']['starRating']
                         skillTable = data['vars']['skillTable']
 
-                        level = BeautifulSoup(starRating, 'lxml').body.find(
-                            text=True, recursive=False)
+                        level = BeautifulSoup(starRating, 'lxml').body.find(text=True, recursive=False)
                         level = int(re.search(r'\d+', level).group(0))
 
-                        skillTable = [[cell.text for cell in row("td")]
-                                      for row in BeautifulSoup(skillTable, 'lxml')("tr")]
+                        skillTable = [[cell.text for cell in row("td")]for row in BeautifulSoup(skillTable, 'lxml')("tr")]
 
-                        strength = [word for line in skillTable[2]
-                                    for word in line.split()]
-                        strength_attribute = [
-                            word for word in strength if word in good_strength]
+                        strength = [word for line in skillTable[2] for word in line.split()]
+                        strength_attribute = [word for word in strength if word in good_strength]
 
-                        weakness = [word for line in skillTable[3]
-                                    for word in line.split()]
-                        weakness_attribute = [
-                            word for word in weakness if word in good_weakness]
-
-                        employee_url = f'https://igpmanager.com/app/d=staff&id={employee_id}&tab=attributes'
+                        weakness = [word for line in skillTable[3]for word in line.split()]
+                        weakness_attribute = [word for word in weakness if word in good_weakness]
 
                         if strength_attribute and weakness_attribute:
                             if available:
+                                employee_url = f'https://igpmanager.com/app/d=staff&id={employee_id}&tab=attributes'
+
                                 if strength_attribute[0] == 'Acceleration':
                                     strength_attribute[0] = 'Aceleração'
 
@@ -115,7 +103,7 @@ class IgpSpider(scrapy.Spider):
                                     weakness_attribute[0] = 'Resfriamento'
 
                                 else:
-                                    weakness_attribute[0] = 'Confiabilidade'
+                                    weakness_attribute[0] = 'Confiabilidade'                                
 
                                 print(f'ID {employee_id} RECORDED')
                                 record_log(f'ID {employee_id} RECORDED')
@@ -139,8 +127,7 @@ def record_good_cd(employee_id, level, strength, weakness, url):
     with open('staff/good_cd.csv', 'a') as file:
         writer = csv.writer(file, delimiter=',',
                             quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(
-            ['ID', 'LEVEL', 'ESPECIALIDADE', 'FRAQUEZA', 'URL'])
+
         writer.writerow([employee_id, level, strength, weakness, url])
 
 
