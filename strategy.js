@@ -19,7 +19,6 @@ const lapTimeH = 109
 const possibilities = Combinatorics.baseN(tyres, pits + 1)
 
 for (let possibility = 0; possibility < possibilities.length; possibility++) {
-  console.log(possibilities.toArray()[possibility])
   const occurrenceSS = getOccurrence(possibilities.toArray()[possibility], 'SS')
   const occurrenceS = getOccurrence(possibilities.toArray()[possibility], 'S')
   const occurrenceM = getOccurrence(possibilities.toArray()[possibility], 'M')
