@@ -4,7 +4,7 @@ const fs = require('fs')
 const track = 'Austrália'
 const trackLaps = 57
 const pitTime = 22
-const pits = 3
+const pits = 4
 
 const tyres = ['SS', 'S', 'M', 'H']
 const lapsWithGoodTyresSS = 5
@@ -32,7 +32,7 @@ for (let possibility = 0; possibility < possibilities.length; possibility++) {
     const totalTime = ((lapTimeSS * lapsWithGoodTyresSS) * occurrenceSS) + ((lapTimeS * lapsWithGoodTyresS) * occurrenceS) + ((lapTimeM * lapsWithGoodTyresM) * occurrenceM) + ((lapTimeH * lapsWithGoodTyresH) * occurrenceH) + (pitTime * pits)
     const data = `${track}, ${possibilities.toArray()[possibility]}, ${totalTime}, ${totalLap}`
 
-    fs.writeFile('/home/felipe/scripts/igp/src/strategies/strategy.csv', data + '\n', { flag: 'a' }, (error) => {
+    fs.writeFile('./strategies/strategy.csv', data + '\n', { flag: 'a' }, (error) => {
       if (error) throw error
     })
   }
