@@ -24,11 +24,11 @@ $(window).load(function () {
       });
       $('.chatbox-citar').click(function () {
         textoCitado = $(this).parent().parent().find('.msg > span').text();
-        textoCitado = "Cita\xE7\xE3o de Usu\xE1rio: \"".concat(textoCitado, "\"|").concat($('#message').val());
+        textoCitado = "Cita\xE7\xE3o".concat(textoCitado, "|").concat($('#message').val());
         $('#message').val(textoCitado);
         window.chatbox.send();
       });
-      $(".msg > span:contains('Citação de')").each(function () {
+      $(".msg > span:contains('Citação')").each(function () {
         var textoComCitacao = $(this).text().split("|");
         var corTexto = $(this).css("color");
         var citacao = textoComCitacao[0];
