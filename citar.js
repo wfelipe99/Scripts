@@ -1,5 +1,3 @@
-"use strict";
-
 $(window).load(function () {
   var chatbox_script = function chatbox_script() {
     var overrided = Chatbox.prototype.refresh;
