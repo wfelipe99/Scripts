@@ -1,3 +1,4 @@
+/* Sistema de citação desenvolvido para uso exclusivo do Naruto Survival Gold. */
 $(window).load(function () {
   var chatbox_script = function chatbox_script() {
     var overrided = Chatbox.prototype.refresh;
@@ -34,7 +35,7 @@ $(window).load(function () {
     Chatbox.prototype.refresh = function (data) {
       overrided.call(this, data);
       $('.user-msg').each(function () {
-        $(this).find(".user").append("<button class=\"chatbox-citar\" style=\"float: right;\">Citar</button");
+        $(this).find(".user").append("<button class=\"chatbox-citar\" style=\"float: right; border: 1px solid #b3b3b3; border-radius: 6px; background-color: #b3b3b3; padding: 5px 10px 5px 10px; margin-right: 10px;\">Citar</button");
       });
       $('.chatbox-citar').click(function () {
         var usuarioCitado = $(this).parent().find('.chatbox-username').text();
@@ -59,7 +60,6 @@ $(window).load(function () {
         var resposta = textoComCitacao[2];
         $(this).hide();
         $(this).parent().append("<div class=\"citacao\" style=\"color: ".concat(corTexto, ";  border-left: 4px solid #AA00FF; border-radius: 5px; background-color: #dea02c; color: white; width: max-content; margin-left: 50px; margin-top: 10px; margin-bottom: 5px; padding: 5px; max-width: 70%;\"><p style='color: #363534; font-weight: bold'>").concat(usuarioCitado, ":</p><p>").concat(citacao, "</p></div>"));
-        $('body').append('<div id="chatbox-citacao-NSG" style="display: none">NSG</div>');
         $(this).parent().append("<span class=\"resposta\" style=\"color: ".concat(corTexto, "; margin-left: 50px;\">").concat(resposta, "</span>"));
       }); // Corrigir o scroll para descer automaticamente
 
@@ -100,4 +100,6 @@ $(window).load(function () {
       console.log(a);
     }
   });
+  // Nunca remover
+  $('body').append('<div id="chatbox-citacao-RGSN" style="display: none">GSN</div>');
 });
