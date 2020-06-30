@@ -8,13 +8,13 @@ $(window).load(function () {
     });
     $('.chatbox-citar').click(function () {
       var usuarioCitado = $(this).parent().find('.chatbox-username').text();
-      var existeCitacao = $(this).parent().parent().find('.msg > .citacao').text();
+      var existeCitacao = $(this).parent().parent().find('.msg > .citacao').html();
 
       if (existeCitacao) {
         // Se o texto já foi citado, pegue apenas a resposta
-        textoCitado = $(this).parent().parent().find('.msg > .resposta').text();
+        textoCitado = $(this).parent().parent().find('.msg > .resposta').html();
       } else {
-        textoCitado = $(this).parent().parent().find('.msg > span').text();
+        textoCitado = $(this).parent().parent().find('.msg > span').html();
       }
 
       textoCitado = "Cita\xE7\xE3o".concat(textoCitado, "|").concat(usuarioCitado, "|").concat($('#message').val());
@@ -22,13 +22,16 @@ $(window).load(function () {
       window.chatbox.send();
     });
     $(".msg > span:contains('Citação')").each(function () {
-      var textoComCitacao = $(this).text().split("|");
+      var textoComCitacao = $(this).html().split("|");
       var corTexto = $(this).css("color");
       var citacao = textoComCitacao[0].replace('Citação', '');
+      console.log(citacao);
+      var citacaoTemImagem = citacao.includes('&lt;img src=');
+      console.log(citacaoTemImagem);
       var usuarioCitado = textoComCitacao[1];
       var resposta = textoComCitacao[2];
       $(this).hide();
-      $(this).parent().append("<div class=\"citacao\" style=\"color: ".concat(corTexto, ";  border-left: 4px solid #AA00FF; border-radius: 5px; background-color: #dea02c; color: white; width: max-content; margin-left: 50px; margin-top: 10px; margin-bottom: 5px; padding: 5px; max-width: 70%;\"><p>").concat(usuarioCitado, ":</p><p>").concat(citacao, "</p></div>"));
+      $(this).parent().append("<div class=\"citacao\" style=\"color: ".concat(corTexto, ";  border-left: 4px solid #AA00FF; border-radius: 5px; background-color: #dea02c; color: white; width: max-content; margin-left: 50px; margin-top: 10px; margin-bottom: 5px; padding: 5px; max-width: 70%;\"><p style='color: #363534; font-weight: bold'>").concat(usuarioCitado, ":</p><p>").concat(citacao, "</p></div>"));
       $(this).parent().append("<span class=\"resposta\" style=\"color: ".concat(corTexto, "; margin-left: 50px;\">").concat(resposta, "</span>"));
     });
 
@@ -39,13 +42,13 @@ $(window).load(function () {
       });
       $('.chatbox-citar').click(function () {
         var usuarioCitado = $(this).parent().find('.chatbox-username').text();
-        var existeCitacao = $(this).parent().parent().find('.msg > .citacao').text();
+        var existeCitacao = $(this).parent().parent().find('.msg > .citacao').html();
 
         if (existeCitacao) {
           // Se o texto já foi citado, pegue apenas a resposta
-          textoCitado = $(this).parent().parent().find('.msg > .resposta').text();
+          textoCitado = $(this).parent().parent().find('.msg > .resposta').html();
         } else {
-          textoCitado = $(this).parent().parent().find('.msg > span').text();
+          textoCitado = $(this).parent().parent().find('.msg > span').html();
         }
 
         textoCitado = "Cita\xE7\xE3o".concat(textoCitado, "|").concat(usuarioCitado, "|").concat($('#message').val());
@@ -53,7 +56,7 @@ $(window).load(function () {
         window.chatbox.send();
       });
       $(".msg > span:contains('Citação')").each(function () {
-        var textoComCitacao = $(this).text().split("|");
+        var textoComCitacao = $(this).html().split("|");
         var corTexto = $(this).css("color");
         var citacao = textoComCitacao[0].replace('Citação', '');
         var usuarioCitado = textoComCitacao[1];
@@ -99,7 +102,8 @@ $(window).load(function () {
     } catch (a) {
       console.log(a);
     }
-  });
+  }); 
+  
   // Nunca remover
   $('body').append('<div id="chatbox-citacao-RGSN" style="display: none">GSN</div>');
 });
