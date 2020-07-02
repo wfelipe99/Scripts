@@ -1,3 +1,5 @@
+"use strict";
+
 /* Sistema de citação desenvolvido para uso exclusivo do Naruto Survival Gold. */
 $(window).load(function () {
   var chatbox_script = function chatbox_script() {
@@ -25,9 +27,13 @@ $(window).load(function () {
       var textoComCitacao = $(this).html().split("|");
       var corTexto = $(this).css("color");
       var citacao = textoComCitacao[0].replace('Citação', '');
-      console.log(citacao);
+      citacao = citacao.split('&lt;strong&gt;').join("");
+      citacao = citacao.split('&lt;/strong&gt;').join("");
+      citacao = citacao.split('&lt;img').join("<img");
+      citacao = citacao.split('&gt;').join(">");
+      citacao = citacao.split('<strong>').join("");
       var citacaoTemImagem = citacao.includes('&lt;img src=');
-      console.log(citacaoTemImagem);
+      var citacaoTemStrong = citacao.includes('&lt;img src=');
       var usuarioCitado = textoComCitacao[1];
       var resposta = textoComCitacao[2];
       $(this).hide();
@@ -59,6 +65,13 @@ $(window).load(function () {
         var textoComCitacao = $(this).html().split("|");
         var corTexto = $(this).css("color");
         var citacao = textoComCitacao[0].replace('Citação', '');
+        citacao = citacao.split('&lt;strong&gt;').join("");
+        citacao = citacao.split('&lt;/strong&gt;').join("");
+        citacao = citacao.split('&lt;img').join("<img");
+        citacao = citacao.split('&gt;').join(">");
+        citacao = citacao.split('<strong>').join("");
+        var citacaoTemImagem = citacao.includes('&lt;img src=');
+        var citacaoTemStrong = citacao.includes('&lt;img src=');
         var usuarioCitado = textoComCitacao[1];
         var resposta = textoComCitacao[2];
         $(this).hide();
@@ -103,7 +116,6 @@ $(window).load(function () {
       console.log(a);
     }
   }); 
-  
   // Nunca remover
   $('body').append('<div id="chatbox-citacao-RGSN" style="display: none">GSN</div>');
 });
