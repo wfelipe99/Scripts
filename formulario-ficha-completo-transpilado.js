@@ -648,7 +648,169 @@ cursor: text;
 <script type="text/javascript">
 "use strict";
 
-$(window).on('load', function () {
+$(document).ready(function () {
+  // Permitir apenas números nos devidos campos
+  $('#peso').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#altura').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#controle-chakra').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#selos').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#constituicao-mental').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#resistencia').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#forca').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#velocidade').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#controle-chakra').keypress(function () {
+    var controleChakraCounter = $('#controle-chakra').val().length;
+
+    if (controleChakraCounter >= 3) {
+      return false;
+    }
+  });
+  $('#selos').keypress(function () {
+    var selosCounter = $('#selos').val().length;
+
+    if (selosCounter >= 3) {
+      return false;
+    }
+  });
+  $('#constituicao-mental').keypress(function () {
+    var constituicaoMentalCounter = $('#constituicao-mental').val().length;
+
+    if (constituicaoMentalCounter >= 3) {
+      return false;
+    }
+  });
+  $('#resistencia').keypress(function () {
+    var resistenciaCounter = $('#resistencia').val().length;
+
+    if (resistenciaCounter >= 3) {
+      return false;
+    }
+  });
+  $('#forca').keypress(function () {
+    var forcaCounter = $('#forca').val().length;
+
+    if (forcaCounter >= 3) {
+      return false;
+    }
+  });
+  $('#velocidade').keypress(function () {
+    var velocidadeCounter = $('#velocidade').val().length;
+
+    if (velocidadeCounter >= 3) {
+      return false;
+    }
+  });
+  $('#nome').click(function () {
+    $('#nome').val('');
+  });
+  $('#peso').click(function () {
+    $('#peso').val('');
+  });
+  $('#altura').click(function () {
+    $('#altura').val('');
+  });
+  $('#comida-favorita').click(function () {
+    $('#comida-favorita').val('');
+  });
+  $('#hobbie').click(function () {
+    $('#hobbie').val('');
+  });
+  $('#tipo-comunicacao-animal').click(function () {
+    $(this).val('');
+  });
+  $('#tipo-criatividade-elevada').click(function () {
+    $(this).val('');
+  });
+  $('#tipo-alergia').click(function () {
+    $(this).val('');
+  });
+  $('#tipo-estresse-pos-traumatico').click(function () {
+    $(this).val('');
+  });
+  $('#tipo-fanatismo').click(function () {
+    $(this).val('');
+  });
+  $('#tipo-fobia').click(function () {
+    $(this).val('');
+  });
+  $('#tipo-vicio').click(function () {
+    $(this).val('');
+  });
+  $('#tipo-deficiencia').click(function () {
+    $(this).val('');
+  });
+  $('#tipo-doenca').click(function () {
+    $(this).val('');
+  });
+  $('#tipo-doenca-terminal').click(function () {
+    $(this).val('');
+  });
+});
+$(window).on('load', function (event) {
+  // Esconder tipos das qualidades e defeitos
+  $('#tipo-comunicacao-animal-wrapper').hide();
+  $('#tipo-criatividade-elevada-wrapper').hide();
+  $('#tipo-alergia-wrapper').hide();
+  $('#tipo-estresse-pos-traumatico-wrapper').hide();
+  $('#tipo-fanatismo-wrapper').hide();
+  $('#tipo-fobia-wrapper').hide();
+  $('#tipo-vicio-wrapper').hide();
+  $('#tipo-deficiencia-wrapper').hide();
+  $('#tipo-doenca-wrapper').hide();
+  $('#tipo-doenca-terminal-wrapper').hide(); // Desativar as vilas não finalizadas
+
+  $("#vila option[value='Vila Oculta da Folha (País do Fogo)']").hide();
+  $("#vila option[value='Vila Oculta da Nuvem (País do Relâmpago)']").hide();
+  $("#cla option[value='Aburame']").hide();
+  $("#cla option[value='Akimichi']").hide();
+  $("#cla option[value='Hatake']").hide();
+  $("#cla option[value='Hyūga']").hide();
+  $("#cla option[value='Inuzuka']").hide();
+  $("#cla option[value='Lee']").hide();
+  $("#cla option[value='Nara']").hide();
+  $("#cla option[value='Sarutobi']").hide();
+  $("#cla option[value='Senju']").hide();
+  $("#cla option[value='Shimura']").hide();
+  $("#cla option[value='Uchiha']").hide();
+  $("#cla option[value='Yamanaka']").hide();
+  $("#cla option[value='Chinoike']").hide();
+  $("#cla option[value='Yotsuki']").hide();
+  $("#kekkei-genkai option[value='Sharingan']").hide();
+  $("#kekkei-genkai option[value='Byakugan']").hide();
+  $("#kekkei-genkai option[value='Ketsuryūgan']").hide();
+  $("#elemento-avancado option[value='Enton (Chama)']").hide();
   $('#qualidades').change(function () {
     var qualidades = $(this).val().toString();
 
@@ -870,6 +1032,37 @@ $(window).on('load', function () {
     var forca = $('#forca').val();
     var velocidade = $('#velocidade').val();
     var subject = "Ficha de ".concat(cla, " ").concat(nome);
+    var erros = [];
+
+    if (nome === '') {
+      erros.push('Nome');
+    }
+
+    if (peso === '') {
+      erros.push('Peso');
+    }
+
+    if (altura === '') {
+      erros.push('Altura');
+    }
+
+    if (aparencia === '') {
+      erros.push('Aparência');
+    }
+
+    if (personalidade === '') {
+      erros.push('Personalidade');
+    }
+
+    if (historia === '') {
+      erros.push('História');
+    }
+
+    if (erros) {
+      var erros = erros.toString().split(',').join('\n');
+      alert("\xC9 obrigat\xF3rio preencher os seguintes campos:\n\n".concat(erros));
+      return false;
+    }
 
     if (elementoAvancado !== 'Nenhum') {
       if (kekkeiGenkai !== 'Nenhuma') {
@@ -895,6 +1088,8 @@ $(window).on('load', function () {
       elementoBasico = 'Raiton';
     } else if (elementoBasico === 'Suiton (Água)') {
       elementoBasico = 'Suiton';
+    } else {
+      elementoBasico = 'Nenhum';
     }
 
     for (var qualidade in qualidadesSelecionadas) {
@@ -943,7 +1138,7 @@ $(window).on('load', function () {
 
     var qualidades = qualidadesSelecionadas.toString().split(',').join('\n');
     var defeitos = defeitosSelecionados.toString().split(',').join('\n');
-    var message = "[justify][center][size=18][b]Ficha de ".concat(cla, " ").concat(nome, "[/b][/size][/center]\n\n[b]Nome:[/b] ").concat(nome, "\n[b]Classe:[/b] Ninja\n[b]Sexo:[/b] ").concat(sexo, "\n[b]Idade:[/b] ").concat(idade, " anos\n[b]Peso:[/b] ").concat(peso, " kg\n[b]Altura:[/b] ").concat(altura, " metros\n[b]Anivers\xE1rio:[/b] ").concat(aniversario, "\n[b]Sangue:[/b] ").concat(sangue, "\n[b]Lateralidade:[/b] ").concat(lateralidade, "\n[b]Cl\xE3:[/b] ").concat(cla, "\n[b]Origem:[/b] ").concat(origem, "\n[b]Elemento B\xE1sico:[/b] ").concat(elementoBasico, " (Afinidade)\n[b]Elemento Avan\xE7ado:[/b] ").concat(elementoAvancado, "\n[b]Kekkei Genkai:[/b] ").concat(kekkeiGenkai, "\n[spoiler=\"Personalidade\"]").concat(personalidade, "[/spoiler]\n[spoiler=\"Apar\xEAncia\"]").concat(aparencia, "[/spoiler]\n[spoiler=\"Hist\xF3ria\"]").concat(historia, "[/spoiler]\n[spoiler=\"Conhecimentos\"][/spoiler]\n[spoiler=\"Individualidades\"][b]Qualidades:[/b]\n\n[color=#009900]").concat(qualidades, "[/color]\n\n[b]Defeitos:[/b]\n\n[color=#ff0000]").concat(defeitos, "[/color]\n[/spoiler]\n\n[center][b][size=16]Maestrias[/size][/b][/center]\n[b]Ninjutsu: ").concat(ninjutsu, "[/b]\n[b]Taijutsu: ").concat(taijutsu, "[/b]\n[b]Genjutsu: ").concat(genjutsu, "[/b]\n[b]Shurikenjutsu: ").concat(shurikenjutsu, "[/b]\n\n[center][b][size=16]Status[/size][/b][/center]\n[b]HP:[/b] ").concat(hp, " pontos\n[b]CH:[/b] ").concat(ch, " pontos\n[b]ST:[/b] ").concat(st, " pontos\n").concat(cla === 'Yomi' ? '[b]CHMA:[/b] 200 pontos' : '', "\n\n[center][b][size=16]Sub-status[/size][/b][/center]\n[b]Controle de Chakra: ").concat(controleChakra, "[/b]\n[b]Selos: ").concat(selos, "[/b]\n[b]Constitui\xE7\xE3o Mental: ").concat(constituicaoMental, "[/b]\n[b]Resist\xEAncia: ").concat(resistencia, "[/b]\n[b]For\xE7a: ").concat(forca, "[/b]\n[b]Velocidade: ").concat(velocidade, "[/b][/justify]");
+    var message = "[justify][center][size=18][b]Ficha de ".concat(cla, " ").concat(nome, "[/b][/size][/center]\n\n[b]Nome:[/b] ").concat(nome, "\n[b]Classe:[/b] Ninja\n[b]Sexo:[/b] ").concat(sexo, "\n[b]Idade:[/b] ").concat(idade, " anos\n[b]Peso:[/b] ").concat(peso, " kg\n[b]Altura:[/b] ").concat(altura, " metros\n[b]Anivers\xE1rio:[/b] ").concat(aniversario, "\n[b]Sangue:[/b] ").concat(sangue, "\n[b]Lateralidade:[/b] ").concat(lateralidade, "\n[b]Cl\xE3:[/b] ").concat(cla, "\n[b]Origem:[/b] ").concat(origem, "\n[b]Elemento B\xE1sico:[/b] ").concat(elementoBasico, " (Afinidade)\n[b]Elemento Avan\xE7ado:[/b] ").concat(elementoAvancado, "\n[b]Kekkei Genkai:[/b] ").concat(kekkeiGenkai, "\n[spoiler=\"Personalidade\"]").concat(personalidade, "[/spoiler]\n[spoiler=\"Apar\xEAncia\"]").concat(aparencia, "[/spoiler]\n[spoiler=\"Hist\xF3ria\"]").concat(historia, "[/spoiler]\n[spoiler=\"Conhecimentos\"][/spoiler]\n[spoiler=\"Individualidades\"][b]Qualidades:[/b]\n[color=#009900]").concat(qualidades, "[/color]\n\n[b]Defeitos:[/b]\n[color=#ff0000]").concat(defeitos, "[/color]\n[/spoiler]\n\n[center][b][size=16]Maestrias[/size][/b][/center]\n[b]Ninjutsu: ").concat(ninjutsu, "[/b]\n[b]Taijutsu: ").concat(taijutsu, "[/b]\n[b]Genjutsu: ").concat(genjutsu, "[/b]\n[b]Shurikenjutsu: ").concat(shurikenjutsu, "[/b]\n\n[center][b][size=16]Status[/size][/b][/center]\n[b]HP:[/b] ").concat(hp, " pontos\n[b]CH:[/b] ").concat(ch, " pontos\n[b]ST:[/b] ").concat(st, " pontos\n").concat(cla === 'Yomi' ? '[b]CHMA:[/b] 200 pontos' : '', "\n\n[center][b][size=16]Sub-status[/size][/b][/center]\n[b]Controle de Chakra: ").concat(controleChakra, "[/b]\n[b]Selos: ").concat(selos, "[/b]\n[b]Constitui\xE7\xE3o Mental: ").concat(constituicaoMental, "[/b]\n[b]Resist\xEAncia: ").concat(resistencia, "[/b]\n[b]For\xE7a: ").concat(forca, "[/b]\n[b]Velocidade: ").concat(velocidade, "[/b][/justify]");
     var description = 'Sem descrição';
     $.post('/post', {
       f: 11,
@@ -960,7 +1155,18 @@ $(window).on('load', function () {
       html = html.substring(0, html.length - 1);
       var href = $(html).find("a[title='".concat(subject, "']")).attr("href");
       var idTopico = href.split('-')[0].replace(/\D/g, "");
-      localStorage.setItem("idTopicoFicha", idTopico); // location.href = '/forum';
+      localStorage.setItem("idTopicoFicha", idTopico);
+      localStorage.setItem("ninjutsu", ninjutsu);
+      localStorage.setItem("taijutsu", taijutsu);
+      localStorage.setItem("genjutsu", genjutsu);
+      localStorage.setItem("shurikenjutsu", shurikenjutsu);
+      localStorage.setItem("controle-chakra", controleChakra);
+      localStorage.setItem("selos", selos);
+      localStorage.setItem("constituicao-mental", constituicaoMental);
+      localStorage.setItem("resistencia", resistencia);
+      localStorage.setItem("forca", forca);
+      localStorage.setItem("velocidade", velocidade);
+      location.href = '/forum';
     }).fail(function () {
       alert('Não foi possível enviar a sua ficha. Tente novamente.');
     });
