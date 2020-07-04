@@ -1,5 +1,197 @@
-$(window).on('load', function() {
- 
+$(document).ready(function () {
+  // Permitir apenas números nos devidos campos
+$('#peso').keypress(function(event) {
+  if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    event.preventDefault();
+  }
+});
+  
+$('#altura').keypress(function(event) {
+  if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    event.preventDefault();
+  }
+});
+  
+$('#controle-chakra').keypress(function(event) {
+  if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    event.preventDefault();
+  }
+});
+  
+$('#selos').keypress(function(event) {
+  if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    event.preventDefault();
+  }
+});
+  
+$('#constituicao-mental').keypress(function(event) {
+  if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    event.preventDefault();
+  }
+});
+  
+$('#resistencia').keypress(function(event) {
+  if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    event.preventDefault();
+  }
+});
+  
+$('#forca').keypress(function(event) {
+  if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    event.preventDefault();
+  }
+});
+
+$('#velocidade').keypress(function(event) {
+  if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    event.preventDefault();
+  }
+});
+  
+$('#controle-chakra').keypress(function() {
+  var controleChakraCounter = $('#controle-chakra').val().length
+  
+  if (controleChakraCounter >= 3) {
+    return false
+  }
+})
+  
+$('#selos').keypress(function() {
+  var selosCounter = $('#selos').val().length
+  
+  if (selosCounter >= 3) {
+    return false
+  }
+})
+  
+$('#constituicao-mental').keypress(function() {
+  var constituicaoMentalCounter = $('#constituicao-mental').val().length
+  
+  if (constituicaoMentalCounter >= 3) {
+    return false
+  }
+})
+  
+$('#resistencia').keypress(function() {
+  var resistenciaCounter = $('#resistencia').val().length
+  
+  if (resistenciaCounter >= 3) {
+    return false
+  }
+})
+  
+$('#forca').keypress(function() {
+  var forcaCounter = $('#forca').val().length
+  
+  if (forcaCounter >= 3) {
+    return false
+  }
+})
+  
+$('#velocidade').keypress(function() {
+  var velocidadeCounter = $('#velocidade').val().length
+  
+  if (velocidadeCounter >= 3) {
+    return false
+  }
+})
+  
+$('#nome').click(function() {
+  $('#nome').val('')
+})
+  
+$('#peso').click(function() {
+  $('#peso').val('')
+})
+  
+$('#altura').click(function() {
+  $('#altura').val('')
+})
+  
+$('#comida-favorita').click(function() {
+  $('#comida-favorita').val('')
+})
+  
+$('#hobbie').click(function() {
+  $('#hobbie').val('')
+})
+  
+$('#tipo-comunicacao-animal').click(function() {
+  $(this).val('')
+})
+  
+$('#tipo-criatividade-elevada').click(function() {
+  $(this).val('')
+})
+  
+$('#tipo-alergia').click(function() {
+  $(this).val('')
+})
+
+$('#tipo-estresse-pos-traumatico').click(function() {
+  $(this).val('')
+})
+  
+  $('#tipo-fanatismo').click(function() {
+  $(this).val('')
+})
+  
+  $('#tipo-fobia').click(function() {
+  $(this).val('')
+})
+  
+  $('#tipo-vicio').click(function() {
+  $(this).val('')
+})
+  
+  $('#tipo-deficiencia').click(function() {
+  $(this).val('')
+})
+  
+  $('#tipo-doenca').click(function() {
+  $(this).val('')
+})
+  
+  $('#tipo-doenca-terminal').click(function() {
+  $(this).val('')
+})
+})
+
+$(window).on('load', function(event) {
+// Esconder tipos das qualidades e defeitos
+$('#tipo-comunicacao-animal-wrapper').hide()
+$('#tipo-criatividade-elevada-wrapper').hide()
+$('#tipo-alergia-wrapper').hide()
+$('#tipo-estresse-pos-traumatico-wrapper').hide()
+$('#tipo-fanatismo-wrapper').hide()
+$('#tipo-fobia-wrapper').hide()
+$('#tipo-vicio-wrapper').hide()
+$('#tipo-deficiencia-wrapper').hide()
+$('#tipo-doenca-wrapper').hide()
+$('#tipo-doenca-terminal-wrapper').hide()
+
+// Desativar as vilas não finalizadas
+$("#vila option[value='Vila Oculta da Folha (País do Fogo)']").hide()
+$("#vila option[value='Vila Oculta da Nuvem (País do Relâmpago)']").hide()
+$("#cla option[value='Aburame']").hide()
+$("#cla option[value='Akimichi']").hide()
+$("#cla option[value='Hatake']").hide()
+$("#cla option[value='Hyūga']").hide()
+$("#cla option[value='Inuzuka']").hide()
+$("#cla option[value='Lee']").hide()
+$("#cla option[value='Nara']").hide()
+$("#cla option[value='Sarutobi']").hide()
+$("#cla option[value='Senju']").hide()
+$("#cla option[value='Shimura']").hide()
+$("#cla option[value='Uchiha']").hide()
+$("#cla option[value='Yamanaka']").hide()
+$("#cla option[value='Chinoike']").hide()
+$("#cla option[value='Yotsuki']").hide()
+$("#kekkei-genkai option[value='Sharingan']").hide()
+$("#kekkei-genkai option[value='Byakugan']").hide()
+$("#kekkei-genkai option[value='Ketsuryūgan']").hide()
+$("#elemento-avancado option[value='Enton (Chama)']").hide()
+
 $('#qualidades').change(function() {
   var qualidades = $(this).val().toString()
   if (qualidades.includes('Comunicação animal* [1 ponto]')) {
@@ -228,6 +420,38 @@ $('#enviar').on('click', function (event) {
   var velocidade = $('#velocidade').val();
   var subject = `Ficha de ${cla} ${nome}`;
   
+  var erros = []
+  
+  if (nome === '') {
+    erros.push('Nome')
+  }
+  
+  if (peso === '') {
+    erros.push('Peso')
+  }
+  
+  if (altura === '') {
+    erros.push('Altura')
+  }
+  
+  if (aparencia === '') {
+    erros.push('Aparência')
+  }
+  
+  if (personalidade === '') {
+    erros.push('Personalidade')
+  }
+  
+  if (historia === '') {
+    erros.push('História')
+  }
+  
+  if (erros) {
+    var erros = erros.toString().split(',').join('\n')
+    alert(`É obrigatório preencher os seguintes campos:\n\n${erros}`)
+    return false
+  }
+  
   if (elementoAvancado !== 'Nenhum') {
     if (kekkeiGenkai !== 'Nenhuma') {
       kekkeiGenkai = `${kekkeiGenkai}, ${elementoAvancado}`
@@ -252,6 +476,8 @@ $('#enviar').on('click', function (event) {
     elementoBasico = 'Raiton'
   } else if (elementoBasico === 'Suiton (Água)') {
     elementoBasico = 'Suiton'
+  } else {
+    elementoBasico = 'Nenhum'
   }
   
   for (const qualidade in qualidadesSelecionadas) {
@@ -322,11 +548,9 @@ $('#enviar').on('click', function (event) {
 [spoiler="História"]${historia}[/spoiler]
 [spoiler="Conhecimentos"][/spoiler]
 [spoiler="Individualidades"][b]Qualidades:[/b]
-
 [color=#009900]${qualidades}[/color]
 
 [b]Defeitos:[/b]
-
 [color=#ff0000]${defeitos}[/color]
 [/spoiler]
 
