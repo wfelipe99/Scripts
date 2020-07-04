@@ -1058,7 +1058,7 @@ $(window).on('load', function (event) {
       erros.push('História');
     }
 
-    if (erros) {
+    if (erros.length > 0) {
       var erros = erros.toString().split(',').join('\n');
       alert("\xC9 obrigat\xF3rio preencher os seguintes campos:\n\n".concat(erros));
       return false;
