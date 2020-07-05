@@ -11,10 +11,120 @@ $(window).on('load', function () {
   var resistencia = parseFloat(localStorage.getItem('resistencia'));
   var forca = parseFloat(localStorage.getItem('forca'));
   var velocidade = parseFloat(localStorage.getItem('velocidade'));
+  var cla = localStorage.getItem('cla')
   
   var jutsusHabilidadeGeral = []
   var jutsusNinjutsu = []
   var jutsusFukuwajutsu = []
+  var equipamentos = []
+  var marionetes = []
+  var modos = []
+  
+  if (cla === 'Hoshigaki') {
+    equipamentos.push(`
+[img]https://i.servimg.com/u/f62/19/85/42/92/hayate10.png[/img]
+[u][b]Katana[/b][/u]
+[b]Porte:[/b] Médio
+[b]Quantidade:[/b] 1 unidade
+[b]Descrição:[/b] A katana é geralmente definida uma espada de tamanho padrão, moderadamente curva (em oposição ao antigo "tachi" estilo com mais curvatura) e com um comprimento de lâmina maior que 60 cm (231⁄2 polegadas). Caracteriza-se por sua aparência distintiva: uma lâmina curva, delgada e de um único fio com uma proteção circular ou quadrada (tsuba) e base longa para acomodar duas mãos. Ela é ideal para efetuar cortes rápidos e muita usada combates de curta distância.`)
+  }
+  
+  if (cla === 'Hōzuki') {
+    equipamentos.push(`
+[img]https://i62.servimg.com/u/f62/19/46/73/96/suiget10.png[/img]
+[u][b]Copo Squeeze[/b][/u]
+[b]Porte:[/b] Pequeno
+[b]Quantidade:[/b] 1 unidade (500 mls)
+[b]Descrição:[/b] Um copo squeeze simples com tampa e canudos removíveis. Embora venha nas cores azul bondi e preto, ela pode ser personalizada à vontade do usuário.`)
+  }
+  
+  if (cla === 'Kurosuki') {
+    equipamentos.push(`
+[img]https://i62.servimg.com/u/f62/19/46/73/96/de866610.jpg[/img]
+[u][b]Garra Retrátil Kurosuki[/b][/u]
+[b]Porte:[/b] Médio
+[b]Quantidade:[/b] 1 par
+[b]Descrição:[/b] Um par de luvas de couro com um compartimento em suas superfícies. Este compartimento abriga três lâminas retráteis e curvas que podem ser acionadas com uma impulsão de chakra do usuário. Elas podem proporcionar taijutsus, como o Kuro Tatsumaki.`)
+  }
+  
+  if (cla === 'Shirogane') {
+    equipamentos.push(`
+[img]https://i.servimg.com/u/f93/19/85/42/92/com_ga10.png[/img]
+[b][u]Marionete Andarilha com Garras[/u][/b]
+[b]Porte:[/b] Médio
+[b]Quantidade:[/b] 1 unidade
+[b]Descrição:[/b] A forma mais comum de marionete andarilha usada pelo Clã Shirogane. Além dos seus 1,6 metros de altura, elas também têm uma cabeça que se assemelha a da Formiga Negra, braços longos e finos com três dedos feitos de lâminas em cada mão, uma caixa no peito com uma fórmula de determinada técnica, e em seu centro escrito o kanji para "corte" (斩) na mesma, uma espinha fina conectar seu peito aos seus quadris e pernas, vestidos de preto, calças rasgadas. Eles atacam principalmente com as suas garras, a fiação no local ou mergulhar em seus alvos. Esta marionete também pode efetuar o Henge no Jutsu a fim de enganar alguém se passando por uma pessoa conhecida, embora seja preciso que o usuário tenha o conhecimento desta bem como de sua voz para replicá-la no mecanismo sonoro reprodutor de voz da marionete.
+[b]Armamentos:[/b] Nenhum.`)
+  }
+  
+  if (cla === 'Fūma') {
+    equipamentos.push(`
+[img]https://i.servimg.com/u/f93/19/85/42/92/iruka10.png[/img]
+[u][b]Shuriken Gigante[/b][/u]
+[b]Porte:[/b] Grande
+[b]Quantidade:[/b] 1 unidade
+[b]Descrição:[/b] É apenas uma shuriken de quatro pontas com o diâmetro de um bambolê. Segurando no orifício central, o ninja rotaciona o shuriken gigante, criando o mesmo efeito do Fūma Shuriken.`)
+  }
+  
+  if (cla === 'Jūgo') {
+    modos.push(`
+[img]https://i.servimg.com/u/f93/19/85/42/92/jugo11.png[/img]
+[b][u]Senninka • Estágio 1[/u][/b]
+[color=#990099][b]Rank:[/b] S[/color]
+[b]Tipo:[/b] Suporte, Passivo
+[b]Classe:[/b] Hijutsu, Modo
+[b]Requisito:[/b] Nenhum
+[b]Descrição:[/b] Transformação Sábia (仙人化, Senninka) é uma transformação que consiste em uma mutação por absorver energia natural em grande quantidade e de forma passiva, que resulta em um aumento da capacidade física e a possibilidade de realizar várias proezas que mudam de forma. Essa é uma habilidade comum dentro do clã de Jūgo e para aqueles que obtêm suas células transplantadas em seu corpo. Esta transformação é uma habilidade multifacetada que lhe permite realizar feitos que vão desde a criação de vários apêndices como armas até mesmo consumir outros seres humanos (Saibō Kyūin), bem como um aumento geral em suas capacidades físicas. As transformações do corpo resultadas por esta capacidade possuem um padrão similar ao cobre na área onde a transformação ocorre, a pele sobre a área afetada torna-se castanha, e se ocorre a transformação nos olhos, a esclerótica fica escura também. Um usuário pode transplantar a sua carne (Saibō Haishutsu) com alguém compatível com tais experiências, e acontecimentos de uma lesão severa, mas isso fará com que o corpo do usuário diminua de tamanho e idade. Embora membros desse clã possam absorver energia natural passivamente sem ser transformado em uma estátua, como acontece com aqueles que não conseguiram aprender o senjutsu, seus corpos não podem controlar os grandes picos de energia que acompanham a transformação e, como tal, são propensos a esporadicamente perder as estribeiras.
+[b]Energia Natural Coletada:[/b] 0/1600 pontos`)
+  }
+  
+  if (cla === 'Kedōin') {
+    equipamentos.push(`
+[img]https://i62.servimg.com/u/f62/19/85/42/92/habili10.png[/img]
+[b][u]Máscara Kedōin[/u][/b]
+[b]Porte:[/b] Pequeno
+[b]Quantidade:[/b] 1 unidade
+[b]Descrição:[/b] Uma máscara simples, cujo propósito serve de preparativo da técnica Kao Utsushi no Jutsu do clã Kedōin. Assim que o jutsu é iniciado, a máscara molda-se conforme o rosto do alvo.`)
+  }
+  
+  if (cla === 'Rinha') {
+    equipamentos.push(`
+[img]https://i.servimg.com/u/f93/19/85/42/92/tzocni21.png[/img]
+[u][b]Esfera de Cristal[/b][/u]
+[b]Porte:[/b] Médio
+[b]Quantidade:[/b] 2 unidades
+[b]Descrição:[/b] Esta orbe de vidro pode ser usada por ninjas experientes para observar outras pessoas como uma câmera através do Tōmegane no Jutsu, ou outras funções, como selamentos e afins. Ela é leve, porém frágil, devendo-se ter cuidado ao manuseá-la muito bruscamente.`)
+  }
+  
+  if (cla === 'Tenrō') {
+    if (ninjutsu >= 2 && controleChakra >= 0.2) {
+      jutsusNinjutsu.push(`
+[img]https://i.servimg.com/u/f97/19/55/10/92/sensor10.png[/img]
+[u][b]Kanchi no Jutsu[/b][/u]
+[color=#0033ff][b]Rank:[/b] D[/color]
+[b]Tipo:[/b] Suporte, Passivo
+[b]Classe:[/b] Ninjutsu
+[b]Requisito:[/b] Controle de Chakra (0.2 pontos)
+[b]Descrição:[/b] A Técnica Sensorial, usada pelos shinobi tipo sensor, permite ao usuário reconhecer chakra em seu estado bruto. Usando esta técnica, os sensores podem facilmente detectar e rastrear alvos, sabendo distinguir assinaturas, tipos, quantidades, localizações e variações de fluxos de chakra. Embora esta habilidade conceda aos seus usuários uma capacidade sensorial elevada, ela não é capaz de reconhecer sistemas de circulação de chakra e tenketsus, ou mesmo pontos isolados no corpo do objeto emissor onde há maior concentração de chakra. O alcance desta técnica varia entre os sensores.
+[b]Variação:[/b] A Técnica Sensorial usada pelos membros do Clã Tenrō permite ao usuário rastrear chakra comum através do cheiro e somente por ele, com distâncias variadas relacionadas ao seu controle de chakra próprio e com interferência do vento.`)
+    }
+    
+    equipamentos.push(`
+[img]https://i62.servimg.com/u/f62/19/85/42/92/110.jpg[/img]
+[u][b]Tsume Ashi[/b][/u]
+[b]Porte:[/b] Pequeno
+[b]Quantidade:[/b] 1 par
+[b]Descrição: [/b]Os membros do Clã Tenrō possuem um artefato muito peculiar e bem fácil de usar pelos membros, onde essas garras de pé funcionam muito bem em combates corpo-a-corpo.`)
+  }
+  
+  if (cla === 'Yomi') {
+    equipamentos.push(`
+[img]https://i.servimg.com/u/f62/19/46/73/96/bistur10.png[/img]
+[u][b]Bisturi[/b][/u]
+[b]Porte:[/b] Pequeno
+[b]Quantidade:[/b] 1 unidade
+[b]Descrição: [/b]Um bisturi é um pequeno instrumento de lâmina extremamente afiada destinada a cortar através da pele, tendões e músculos. Ele é usado principalmente por iryō-nin, médicos, ou praticamente qualquer pessoa com conhecimentos médicos para realizar cirurgias. No entanto, devido à sua agudeza, ele também pode ser usado como uma arma potente contra o inimigo. Kabuto Yakushi tinha conhecimento para fazer isso em uma tentativa de matar Sasuke.`)
+  }
   
   jutsusFukuwajutsu.push(`
 [img]https://i.servimg.com/u/f93/19/85/42/92/mudanz10.png[/img]
@@ -128,6 +238,64 @@ $(window).on('load', function () {
 [b]Nota³:[/b] Esta técnica requer todo o tempo de narração de um post para ser executada, podendo ser usada apenas uma vez por post. `)
     }
     
+    if (cla === 'Kamizuru') {
+    if (controleChakra >= 1.5) {
+      jutsusNinjutsu.push(`
+[img]https://i.servimg.com/u/f93/19/85/42/92/58967110.png[/img]
+[u][b]Kuchiyose no Jutsu[/b][/u]
+[b]Selos:[/b] Javali, Cão, Pássaro, Macaco, Bode
+[color=#ff66ff][b]Rank:[/b] E[/color] ~ [color=#660066]S[/color]
+[b]Tipo:[/b] Ofensivo, Defensivo, Suporte
+[b]Classe:[/b] Ninjutsu, Jikūkan Ninjutsu
+[b]Requisito:[/b] Controle de Chakra (1.5 pontos)
+[b]Descrição:[/b] A Técnica de Invocação é um ninjutsu de espaço-tempo que permite que o invocador transporte animais ou pessoas através de longas distâncias instantaneamente através do sangue. Antes de uma invocação animal poder ser executada, um invocador candidato deve primeiro assinar um contrato com uma determinada espécie. O contrato vem na forma de um pergaminho, no qual o contratante usa seu próprio sangue para assinar o seu nome e colocar suas impressões digitais e, uma vez assinado, é válido mesmo após a morte dos contratantes, desde que o contrato em si permaneça intacto. Após isso, eles precisam apenas oferecer uma doação adicional de sangue na mão que assinou o contrato, moldar o seu chakra com selos de mão e, em seguida, plantar a mão que assinou o contrato em uma localização que deseja invocar a criatura. A quantidade de chakra usada durante a invocação determina o quão poderosa a criatura invocada pode ser.
+[b]Nota¹:[/b] Esta técnica altera seu custo de acordo com o rank da criatura invocada;
+[b]Nota²:[/b] Esta técnica permite invocar mais do que uma criatura de uma mesma espécie simultaneamente possuindo 2.0 pontos em Controle de Chakra, contanto que se gaste chakra individualmente para cada uma delas;
+[b]Contrato:[/b] Abelhas.`)
+    }
+  }
+    
+    if (cla === 'Amagiri') {
+    if (controleChakra >= 1.5) {
+      jutsusNinjutsu.push(`
+[img]https://i.servimg.com/u/f93/19/85/42/92/58967110.png[/img]
+[u][b]Kuchiyose no Jutsu[/b][/u]
+[b]Selos:[/b] Javali, Cão, Pássaro, Macaco, Bode
+[color=#ff66ff][b]Rank:[/b] E[/color] ~ [color=#660066]S[/color]
+[b]Tipo:[/b] Ofensivo, Defensivo, Suporte
+[b]Classe:[/b] Ninjutsu, Jikūkan Ninjutsu
+[b]Requisito:[/b] Controle de Chakra (1.5 pontos)
+[b]Descrição:[/b] A Técnica de Invocação é um ninjutsu de espaço-tempo que permite que o invocador transporte animais ou pessoas através de longas distâncias instantaneamente através do sangue. Antes de uma invocação animal poder ser executada, um invocador candidato deve primeiro assinar um contrato com uma determinada espécie. O contrato vem na forma de um pergaminho, no qual o contratante usa seu próprio sangue para assinar o seu nome e colocar suas impressões digitais e, uma vez assinado, é válido mesmo após a morte dos contratantes, desde que o contrato em si permaneça intacto. Após isso, eles precisam apenas oferecer uma doação adicional de sangue na mão que assinou o contrato, moldar o seu chakra com selos de mão e, em seguida, plantar a mão que assinou o contrato em uma localização que deseja invocar a criatura. A quantidade de chakra usada durante a invocação determina o quão poderosa a criatura invocada pode ser.
+[b]Nota¹:[/b] Esta técnica altera seu custo de acordo com o rank da criatura invocada;
+[b]Nota²:[/b] Esta técnica permite invocar mais do que uma criatura de uma mesma espécie simultaneamente possuindo 2.0 pontos em Controle de Chakra, contanto que se gaste chakra individualmente para cada uma delas;
+[b]Contrato:[/b] Besouros.`)
+    }
+  }
+    
+    if (cla === 'Hirasaka') {
+    if (controleChakra >= 1.5) {
+      jutsusNinjutsu.push(`
+[img]https://i.servimg.com/u/f93/19/85/42/92/58967110.png[/img]
+[u][b]Kuchiyose no Jutsu[/b][/u]
+[b]Selos:[/b] Javali, Cão, Pássaro, Macaco, Bode
+[color=#ff66ff][b]Rank:[/b] E[/color] ~ [color=#660066]S[/color]
+[b]Tipo:[/b] Ofensivo, Defensivo, Suporte
+[b]Classe:[/b] Ninjutsu, Jikūkan Ninjutsu
+[b]Requisito:[/b] Controle de Chakra (1.5 pontos)
+[b]Descrição:[/b] A Técnica de Invocação é um ninjutsu de espaço-tempo que permite que o invocador transporte animais ou pessoas através de longas distâncias instantaneamente através do sangue. Antes de uma invocação animal poder ser executada, um invocador candidato deve primeiro assinar um contrato com uma determinada espécie. O contrato vem na forma de um pergaminho, no qual o contratante usa seu próprio sangue para assinar o seu nome e colocar suas impressões digitais e, uma vez assinado, é válido mesmo após a morte dos contratantes, desde que o contrato em si permaneça intacto. Após isso, eles precisam apenas oferecer uma doação adicional de sangue na mão que assinou o contrato, moldar o seu chakra com selos de mão e, em seguida, plantar a mão que assinou o contrato em uma localização que deseja invocar a criatura. A quantidade de chakra usada durante a invocação determina o quão poderosa a criatura invocada pode ser.
+[b]Nota¹:[/b] Esta técnica altera seu custo de acordo com o rank da criatura invocada;
+[b]Nota²:[/b] Esta técnica permite invocar mais do que uma criatura de uma mesma espécie simultaneamente possuindo 2.0 pontos em Controle de Chakra, contanto que se gaste chakra individualmente para cada uma delas;
+[b]Contrato:[/b] Nuibas.`)
+    }
+    
+    equipamentos.push(`
+[img]https://i93.servimg.com/u/f93/19/85/42/92/scree292.png[/img]
+[b][u]Máscara Oni[/u][/b]
+[b]Porte:[/b] Pequeno
+[b]Quantidade:[/b] 1 unidade
+[b]Descrição:[/b] A máscara Oni é um artefato simbólico com a aparência de um demônio, geralmente usado para eventos festivos e cerimoniais, como a passagem do ano novo lunar. A máscara Oni do clã Hirasaka, no entanto, serve para um propósito ainda mais místico e obscuro. Dizem que ela carrega a verdadeira forma de um demônio, que é selada através de um papel de selamento preso em sua testa. Quando um membro do clã Hirasaka a veste, ele é rapidamente possuído pelo espírito maligno, ganhando acesso à sua aparência e poderes.`)
+  }
+    
     if (controleChakra >= 0.8) {
       jutsusNinjutsu.push(`
 [img]https://i.servimg.com/u/f93/19/85/42/92/dissip10.png[/img]
@@ -201,18 +369,38 @@ $(window).on('load', function () {
   }
   
   localStorage.removeItem('idTopicoFicha');
+  localStorage.removeItem('ninjutsu');
+  localStorage.removeItem('taijutsu');
+  localStorage.removeItem('genjutsu');
+  localStorage.removeItem('controle-chakra');
+  localStorage.removeItem('selos');
+  localStorage.removeItem('constituicao-mental');
+  localStorage.removeItem('resistencia');
+  localStorage.removeItem('forca');
+  localStorage.removeItem('velocidade');
+  localStorage.removeItem('cla');
   
   jutsusHabilidadeGeral = jutsusHabilidadeGeral.join('|')
   jutsusNinjutsu = jutsusNinjutsu.join('|')
   jutsusFukuwajutsu = jutsusFukuwajutsu.join('|')
+  equipamentos = equipamentos.join('|')
+  marionetes = marionetes.join('|')
+  modos = modos.join('|')
   
   jutsusHabilidadeGeral = jutsusHabilidadeGeral.toString().split('|').join('\n');
   jutsusNinjutsu = jutsusNinjutsu.toString().split('|').join('\n');
   jutsusFukuwajutsu = jutsusFukuwajutsu.toString().split('|').join('\n');
+  equipamentos = equipamentos.toString().split('|').join('\n');
+  marionetes = marionetes.toString().split('|').join('\n');
+  modos = modos.toString().split('|').join('\n');
   
-  var message = `[spoiler="Habilidade Geral"]${jutsusHabilidadeGeral}[/spoiler]
-[spoiler="Ninjutsu"]${jutsusNinjutsu}[/spoiler]
-[spoiler="Fukuwajutsu"]${jutsusFukuwajutsu}[/spoiler]`
+  var message = `[hide][spoiler="Habilidades Gerais"]${jutsusHabilidadeGeral}[/spoiler]
+
+[spoiler="Ninjutsus"]${jutsusNinjutsu}[/spoiler]
+
+[spoiler="Fukuwajutsus"]${jutsusFukuwajutsu}[/spoiler]
+
+${(equipamentos.length > 0) ? `[spoiler="Equipamentos"]${equipamentos}[/spoiler]` : ''}${(marionetes.length > 0) ? `[spoiler="Marionetes"]${marionetes}[/spoiler]` : ''}${(modos.length > 0) ? `[spoiler="Modos"]${modos}[/spoiler]` : ''}[/hide]`
 
   if (idTopicoFicha) {
     alert('Sua ficha foi enviada, aguarde aprovação');
