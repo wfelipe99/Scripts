@@ -17,7 +17,17 @@ $(document).ready(function () {
       event.preventDefault();
     }
   });
+  $('#controle-chakra-duplicado').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
   $('#selos').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#selos-duplicado').keypress(function (event) {
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
       event.preventDefault();
     }
@@ -27,7 +37,17 @@ $(document).ready(function () {
       event.preventDefault();
     }
   });
+  $('#constituicao-mental-duplicado').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
   $('#resistencia').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#resistencia-duplicado').keypress(function (event) {
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
       event.preventDefault();
     }
@@ -37,13 +57,30 @@ $(document).ready(function () {
       event.preventDefault();
     }
   });
+  $('#forca-duplicado').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
   $('#velocidade').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#velocidade-duplicado').keypress(function (event) {
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
       event.preventDefault();
     }
   });
   $('#controle-chakra').keypress(function () {
     var controleChakraCounter = $('#controle-chakra').val().length;
+
+    if (controleChakraCounter >= 3) {
+      return false;
+    }
+  });
+  $('#controle-chakra-duplicado').keypress(function () {
+    var controleChakraCounter = $(this).val().length;
 
     if (controleChakraCounter >= 3) {
       return false;
@@ -56,8 +93,22 @@ $(document).ready(function () {
       return false;
     }
   });
+  $('#selos-duplicado').keypress(function () {
+    var selosCounter = $(this).val().length;
+
+    if (selosCounter >= 3) {
+      return false;
+    }
+  });
   $('#constituicao-mental').keypress(function () {
     var constituicaoMentalCounter = $('#constituicao-mental').val().length;
+
+    if (constituicaoMentalCounter >= 3) {
+      return false;
+    }
+  });
+  $('#constituicao-mental-duplicado').keypress(function () {
+    var constituicaoMentalCounter = $(this).val().length;
 
     if (constituicaoMentalCounter >= 3) {
       return false;
@@ -70,8 +121,22 @@ $(document).ready(function () {
       return false;
     }
   });
+  $('#resistencia-duplicado').keypress(function () {
+    var resistenciaCounter = $(this).val().length;
+
+    if (resistenciaCounter >= 3) {
+      return false;
+    }
+  });
   $('#forca').keypress(function () {
     var forcaCounter = $('#forca').val().length;
+
+    if (forcaCounter >= 3) {
+      return false;
+    }
+  });
+  $('#forca-duplicado').keypress(function () {
+    var forcaCounter = $(this).val().length;
 
     if (forcaCounter >= 3) {
       return false;
@@ -84,9 +149,21 @@ $(document).ready(function () {
       return false;
     }
   });
+  $('#velocidade-duplicado').keypress(function () {
+    var velocidadeCounter = $(this).val().length;
+
+    if (velocidadeCounter >= 3) {
+      return false;
+    }
+  });
   $('#nome').click(function () {
     $('#nome').val('');
   });
+  
+  $('#nome-duplicado').click(function() {
+    $(this).val('')
+  })
+  
   $('#peso').click(function () {
     $('#peso').val('');
   });
@@ -96,9 +173,19 @@ $(document).ready(function () {
   $('#comida-favorita').click(function () {
     $('#comida-favorita').val('');
   });
+  
+  $('#comida-favorita-duplicado').click(function() {
+    $(this).val('')
+  })
+  
   $('#hobbie').click(function () {
     $('#hobbie').val('');
   });
+  
+  $('#hobby-duplicado').click(function() {
+    $(this).val('')
+  })
+  
   $('#tipo-comunicacao-animal').click(function () {
     $(this).val('');
   });
@@ -130,6 +217,55 @@ $(document).ready(function () {
     $(this).val('');
   });
 });
+
+$('#kekkei-genkai').change(function() {
+  var kekkeiGenkai = $(this).val()
+  
+  if (kekkeiGenkai === 'Sōma no Kō') {
+    $('#nome-duplicado-wrapper').show()
+  $('#aviso-nome-duplicado').show()
+  $('#orientacao-sexual-duplicado-wrapper').show()
+  $('#lateralidade-duplicado-wrapper').show()
+  $('#aviso-lateralidade-duplicado-wrapper').show()
+  $('#comida-favorita-duplicado-wrapper').show()
+  $('#hobby-duplicado-wrapper').show()
+  $('#substatus-duplicado-wrapper').show()
+    $("#cla option[value='Nenhum']").attr('selected','selected');
+    $("#elemento-avancado option[value='Nenhum']").attr('selected','selected');
+    $('#cla').attr('disabled', true);
+    $('#elemento-avancado').attr('disabled', true);
+  } else {
+    $('#nome-duplicado-wrapper').hide()
+  $('#aviso-nome-duplicado').hide()
+  $('#orientacao-sexual-duplicado-wrapper').hide()
+  $('#lateralidade-duplicado-wrapper').hide()
+  $('#aviso-lateralidade-duplicado-wrapper').hide()
+  $('#comida-favorita-duplicado-wrapper').hide()
+  $('#hobby-duplicado-wrapper').hide()
+  $('#substatus-duplicado-wrapper').hide()
+    $("#cla option[value='Nenhum']").attr('selected','selected');
+    $("#elemento-avancado option[value='Nenhum']").attr('selected','selected');
+    $('#cla').attr('disabled', false);
+    $('#elemento-avancado').attr('disabled', false);
+  }
+  
+  if (kekkeiGenkai === 'Akagan' || kekkeiGenkai === 'Yome') {
+    $("#cla option[value='Nenhum']").attr('selected','selected');
+    $('#cla').attr('disabled', true);
+  } else {
+    $("#cla option[value='Nenhum']").attr('selected','selected');
+    $('#cla').attr('disabled', false);
+  }
+  
+  if (kekkeiGenkai === 'Demônio Ido' || kekkeiGenkai === 'Hansha Seishin' || kekkeiGenkai === 'Mangekyōgan') {
+    $("#elemento-avancado option[value='Nenhum']").attr('selected','selected');
+    $("#elemento-avancado").attr('disabled', true);
+  } else {
+    $("#elemento-avancado option[value='Nenhum']").attr('selected','selected');
+    $("#elemento-avancado").attr('disabled', false);
+  }
+})
+
 $(window).on('load', function (event) {
   // Esconder tipos das qualidades e defeitos
   $('#tipo-comunicacao-animal-wrapper').hide();
@@ -141,10 +277,24 @@ $(window).on('load', function (event) {
   $('#tipo-vicio-wrapper').hide();
   $('#tipo-deficiencia-wrapper').hide();
   $('#tipo-doenca-wrapper').hide();
-  $('#tipo-doenca-terminal-wrapper').hide(); // Desativar as vilas não finalizadas
-
+  $('#tipo-doenca-terminal-wrapper').hide(); 
+  
+  // Soma no Ko
+  $('#nome-duplicado-wrapper').hide()
+  $('#aviso-nome-duplicado').hide()
+  $('#orientacao-sexual-duplicado-wrapper').hide()
+  $('#lateralidade-duplicado-wrapper').hide()
+  $('#aviso-lateralidade-duplicado-wrapper').hide()
+  $('#comida-favorita-duplicado-wrapper').hide()
+  $('#hobby-duplicado-wrapper').hide()
+  $('#substatus-duplicado-wrapper').hide()
+  
+  
+  // Desativar as vilas não finalizadas
   $("#vila option[value='Vila Oculta da Folha (País do Fogo)']").hide();
   $("#vila option[value='Vila Oculta da Nuvem (País do Relâmpago)']").hide();
+  $("#vila option[value='Cidade Shukuba (País do Fogo)']").hide();
+  $("#vila option[value='Cidade Tanzaku (País do Fogo)']").hide();
   $("#cla option[value='Aburame']").hide();
   $("#cla option[value='Akimichi']").hide();
   $("#cla option[value='Hatake']").hide();
@@ -346,17 +496,25 @@ $(window).on('load', function (event) {
     var ch = 200;
     var st = 200;
     var nome = $('#nome').val();
+    var nomeDuplicado = $('#nome-duplicado').val();
     var sexo = $('#sexo').val();
+    var orientacaoSexual = $('#orientacao-sexual').val();
+    var orientacaoSexualDuplicado = $('#orientacao-sexual-duplicado').val();
     var idade = $('#idade').val();
     var peso = $('#peso').val();
     var altura = $('#altura').val();
     var aniversario = $('#aniversario').val();
     var sangue = $('#sangue').val();
     var lateralidade = $('#lateralidade').val();
+    var lateralidadeDuplicado = $('#lateralidade-duplicado').val();
     var cla = $('#cla').val();
     var origem = $('#vila').val();
     var elementoBasico = $('#elemento-basico').val();
     var elementoAvancado = $('#elemento-avancado').val();
+    var comidaFavorita = $('#comida-favorita').val()
+    var comidaFavoritaDuplicado = $('#comida-favorita-duplicado').val()
+    var hobby = $('#hobbie').val()
+    var hobbyDuplicado = $('#hobby-duplicado').val()
     var kekkeiGenkai = $('#kekkei-genkai').val();
     var personalidade = $('#personalidade').val();
     var aparencia = $('#aparencia').val();
@@ -383,7 +541,13 @@ $(window).on('load', function (event) {
     var resistencia = $('#resistencia').val();
     var forca = $('#forca').val();
     var velocidade = $('#velocidade').val();
-    var subject = "Ficha de ".concat(cla, " ").concat(nome);
+    var controleChakraDuplicado = $('#controle-chakra-duplicado').val()
+    var selosDuplicado = $('#selos-duplicado').val()
+    var constituicaoMentalDuplicado = $('#constituicao-mental-duplicado').val()
+    var resistenciaDuplicado = $('#resistencia-duplicado').val()
+    var forcaDuplicado = $('#forca-duplicado').val()
+    var velocidadeDuplicado = $('#velocidade-duplicado').val()
+    var subject = `Ficha de ${(kekkeiGenkai === 'Sōma no Kō') ? `${nome} & ${nomeDuplicado}` : `${nome}`}`
     var erros = [];
 
     if (nome === '') {
@@ -409,6 +573,24 @@ $(window).on('load', function (event) {
     if (historia === '') {
       erros.push('História');
     }
+    
+    if (aniversario === 'Indefinido') {
+      erros.push('Aniversário');
+    }
+    
+    if (sangue === 'Indefinido') {
+      erros.push('Aniversário');
+    }
+    
+    if (lateralidade === 'Indefinido') {
+      erros.push('Aniversário');
+    }
+    
+    if (kekkeiGenkai === 'Sōma no Kō') {
+      if (lateralidadeDuplicado === 'Indefinido') {
+        erros.push('Lateralidade do Corpo Secundário')
+      }
+    }
 
     if (erros.length > 0) {
       var erros = erros.toString().split(',').join('\n');
@@ -431,17 +613,15 @@ $(window).on('load', function (event) {
     }
 
     if (elementoBasico === 'Doton (Terra)') {
-      elementoBasico = 'Doton';
+      elementoBasico = 'Doton (Afinidade)';
     } else if (elementoBasico === 'Fūton (Vento)') {
-      elementoBasico = 'Fūton';
+      elementoBasico = 'Fūton (Afinidade)';
     } else if (elementoBasico === 'Katon (Fogo)') {
-      elementoBasico = 'Katon';
+      elementoBasico = 'Katon (Afinidade)';
     } else if (elementoBasico === 'Raiton (Trovão)') {
-      elementoBasico = 'Raiton';
+      elementoBasico = 'Raiton (Afinidade)';
     } else if (elementoBasico === 'Suiton (Água)') {
-      elementoBasico = 'Suiton';
-    } else {
-      elementoBasico = 'Nenhum';
+      elementoBasico = 'Suiton (Afinidade)';
     }
 
     for (var qualidade in qualidadesSelecionadas) {
@@ -490,7 +670,64 @@ $(window).on('load', function (event) {
 
     var qualidades = qualidadesSelecionadas.toString().split(',').join('\n');
     var defeitos = defeitosSelecionados.toString().split(',').join('\n');
-    var message = "[justify][center][size=18][b]Ficha de ".concat(cla, " ").concat(nome, "[/b][/size][/center]\n\n[b]Nome:[/b] ").concat(nome, "\n[b]Classe:[/b] Ninja\n[b]Sexo:[/b] ").concat(sexo, "\n[b]Idade:[/b] ").concat(idade, " anos\n[b]Peso:[/b] ").concat(peso, " kg\n[b]Altura:[/b] ").concat(altura, " metros\n[b]Anivers\xE1rio:[/b] ").concat(aniversario, "\n[b]Sangue:[/b] ").concat(sangue, "\n[b]Lateralidade:[/b] ").concat(lateralidade, "\n[b]Cl\xE3:[/b] ").concat(cla, "\n[b]Origem:[/b] ").concat(origem, "\n[b]Elemento B\xE1sico:[/b] ").concat(elementoBasico, " (Afinidade)\n[b]Elemento Avan\xE7ado:[/b] ").concat(elementoAvancado, "\n[b]Kekkei Genkai:[/b] ").concat(kekkeiGenkai, "\n[spoiler=\"Personalidade\"]").concat(personalidade, "[/spoiler]\n[spoiler=\"Apar\xEAncia\"]").concat(aparencia, "[/spoiler]\n[spoiler=\"Hist\xF3ria\"]").concat(historia, "[/spoiler]\n[spoiler=\"Conhecimentos\"][/spoiler]\n[spoiler=\"Individualidades\"][b]Qualidades:[/b]\n[color=#009900]").concat(qualidades, "[/color]\n\n[b]Defeitos:[/b]\n[color=#ff0000]").concat(defeitos, "[/color]\n[/spoiler]\n\n[center][b][size=16]Maestrias[/size][/b][/center]\n[b]Ninjutsu: ").concat(ninjutsu, "[/b]\n[b]Taijutsu: ").concat(taijutsu, "[/b]\n[b]Genjutsu: ").concat(genjutsu, "[/b]\n[b]Shurikenjutsu: ").concat(shurikenjutsu, "[/b]\n\n[center][b][size=16]Status[/size][/b][/center]\n[b]HP:[/b] ").concat(hp, " pontos\n[b]CH:[/b] ").concat(ch, " pontos\n[b]ST:[/b] ").concat(st, " pontos\n").concat(cla === 'Yomi' ? '[b]CHMA:[/b] 200 pontos' : '', "\n\n[center][b][size=16]Sub-status[/size][/b][/center]\n[b]Controle de Chakra: ").concat(controleChakra, "[/b]\n[b]Selos: ").concat(selos, "[/b]\n[b]Constitui\xE7\xE3o Mental: ").concat(constituicaoMental, "[/b]\n[b]Resist\xEAncia: ").concat(resistencia, "[/b]\n[b]For\xE7a: ").concat(forca, "[/b]\n[b]Velocidade: ").concat(velocidade, "[/b][/justify]");
+    var message = `[justify][center][size=18][b]Ficha de ${(kekkeiGenkai === 'Sōma no Kō') ? `${nome} & ${nomeDuplicado}` : `${nome}`}[/b][/size][/center]
+	
+	[b]Nome:[/b] ${nome} ${(kekkeiGenkai === 'Sōma no Kō') ? `& ${nomeDuplicado}`: ''}
+	[b]Classe:[/b] Ninja
+	[b]Sexo:[/b] ${sexo} 
+    [b]Orientacao sexual:[/b] ${orientacaoSexual} ${(kekkeiGenkai === 'Sōma no Kō') ? `& ${orientacaoSexualDuplicado}`: ''}
+	[b]Idade:[/b] ${idade} anos
+	[b]Peso:[/b] ${peso} kg
+	[b]Altura:[/b] ${altura} metros
+	[b]Aniversário:[/b] ${aniversario}
+	[b]Sangue:[/b] ${sangue}
+	[b]Lateralidade:[/b] ${lateralidade} ${(kekkeiGenkai === 'Sōma no Kō') ? `& ${lateralidadeDuplicado}`: ''}
+    [b]Comida favorita:[/b] ${comidaFavorita} ${(kekkeiGenkai === 'Sōma no Kō') ? `& ${comidaFavoritaDuplicado}`: ''}
+    [b]Hobby:[/b] ${hobby} ${(kekkeiGenkai === 'Sōma no Kō') ? `& ${hobbyDuplicado}`: ''}
+	[b]Clã:[/b] ${cla}
+	[b]Origem:[/b] ${origem}
+	[b]Elemento Básico:[/b] ${elementoBasico}
+	[b]Elemento Avançado:[/b] ${elementoAvancado}
+	[b]Kekkei Genkai:[/b] ${kekkeiGenkai}
+	[spoiler="Personalidade"]${personalidade}[/spoiler]
+	[spoiler="Aparência"]${aparencia}[/spoiler]
+	[spoiler="História"]${historia}[/spoiler]
+	[spoiler="Conhecimentos"]• --;
+	• --;
+	• --;
+    [/spoiler]
+	[spoiler="Individualidades"][b]Qualidades:[/b]
+    [color=#009900]${qualidades}[/color]
+	
+    [b]Defeitos:[/b]
+	[color=#ff0000]${defeitos}[/color][/spoiler]
+	
+	[center][b][size=16]Maestrias[/size][/b][/center]
+	[b]Ninjutsu:[/b] ${ninjutsu} pontos
+	[b]Taijutsu:[/b] ${taijutsu} pontos
+	[b]Genjutsu:[/b] ${genjutsu} pontos
+	[b]Shurikenjutsu:[/b] ${shurikenjutsu} pontos
+	
+	[center][b][size=16]Status[/size][/b][/center]
+	[b]HP:[/b] ${hp} pontos
+	[b]CH:[/b] ${ch} pontos
+	[b]ST:[/b] ${st} pontos
+	
+	[center][b][size=16]Sub-status de ${nome}[/size][/b][/center]
+	[b]Controle de Chakra:[/b] ${controleChakra} pontos
+	[b]Selos:[/b] ${selos} pontos
+	[b]Constituição mental:[/b] ${constituicaoMental} pontos
+	[b]Resistência:[/b] ${resistencia} pontos
+	[b]Força:[/b] ${forca} pontos
+	[b]Velocidade:[/b] ${velocidade} pontos
+    ${(kekkeiGenkai === 'Sōma no Kō') ? `[center][b][size=16]Sub-status de ${nomeDuplicado}[/size][/b][/center]
+	[b]Controle de Chakra:[/b] ${controleChakraDuplicado} pontos
+	[b]Selos:[/b] ${selosDuplicado} pontos
+	[b]Constituição mental:[/b] ${constituicaoMentalDuplicado} pontos
+	[b]Resistência:[/b] ${resistenciaDuplicado} pontos
+	[b]Força:[/b] ${forcaDuplicado} pontos
+	[b]Velocidade:[/b] ${velocidadeDuplicado} pontos` : ''}
+[/justify]`
     var description = 'Sem descrição';
     $.post('/post', {
       f: 11,
@@ -519,7 +756,7 @@ $(window).on('load', function (event) {
       localStorage.setItem("forca", forca);
       localStorage.setItem("velocidade", velocidade);
        
-      location.href = '/forum';
+      // location.href = '/forum';
     }).fail(function () {
       alert('Não foi possível enviar a sua ficha. Tente novamente.');
     });
