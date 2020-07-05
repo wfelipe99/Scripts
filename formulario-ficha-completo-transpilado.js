@@ -1280,7 +1280,7 @@ $(window).on('load', function (event) {
     var resistenciaDuplicado = $('#resistencia-duplicado').val();
     var forcaDuplicado = $('#forca-duplicado').val();
     var velocidadeDuplicado = $('#velocidade-duplicado').val();
-    var subject = "Ficha de ".concat(kekkeiGenkai === 'Sōma no Kō' ? "".concat(nome, " & ").concat(nomeDuplicado) : "".concat(nome));
+    var subject = "Ficha de ".concat(cla, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "".concat(nome, " & ").concat(nomeDuplicado) : "".concat(nome));
     var erros = [];
 
     if (nome === '') {
@@ -1312,11 +1312,11 @@ $(window).on('load', function (event) {
     }
 
     if (sangue === 'Indefinido') {
-      erros.push('Aniversário');
+      erros.push('Sangue');
     }
 
     if (lateralidade === 'Indefinido') {
-      erros.push('Aniversário');
+      erros.push('Lateralidade');
     }
 
     if (kekkeiGenkai === 'Sōma no Kō') {
@@ -1403,7 +1403,7 @@ $(window).on('load', function (event) {
 
     var qualidades = qualidadesSelecionadas.toString().split(',').join('\n');
     var defeitos = defeitosSelecionados.toString().split(',').join('\n');
-    var message = "[justify][center][size=18][b]Ficha de ".concat(kekkeiGenkai === 'Sōma no Kō' ? "".concat(nome, " & ").concat(nomeDuplicado) : "".concat(nome), "[/b][/size][/center]\n\t\n\t[b]Nome:[/b] ").concat(nome, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(nomeDuplicado) : '', "\n\t[b]Classe:[/b] Ninja\n\t[b]Sexo:[/b] ").concat(sexo, " \n    [b]Orientacao sexual:[/b] ").concat(orientacaoSexual, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(orientacaoSexualDuplicado) : '', "\n\t[b]Idade:[/b] ").concat(idade, " anos\n\t[b]Peso:[/b] ").concat(peso, " kg\n\t[b]Altura:[/b] ").concat(altura, " metros\n\t[b]Anivers\xE1rio:[/b] ").concat(aniversario, "\n\t[b]Sangue:[/b] ").concat(sangue, "\n\t[b]Lateralidade:[/b] ").concat(lateralidade, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(lateralidadeDuplicado) : '', "\n    [b]Comida favorita:[/b] ").concat(comidaFavorita, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(comidaFavoritaDuplicado) : '', "\n    [b]Hobby:[/b] ").concat(hobby, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(hobbyDuplicado) : '', "\n\t[b]Cl\xE3:[/b] ").concat(cla, "\n\t[b]Origem:[/b] ").concat(origem, "\n\t[b]Elemento B\xE1sico:[/b] ").concat(elementoBasico, "\n\t[b]Elemento Avan\xE7ado:[/b] ").concat(elementoAvancado, "\n\t[b]Kekkei Genkai:[/b] ").concat(kekkeiGenkai, "\n\t[spoiler=\"Personalidade\"]").concat(personalidade, "[/spoiler]\n\t[spoiler=\"Apar\xEAncia\"]").concat(aparencia, "[/spoiler]\n\t[spoiler=\"Hist\xF3ria\"]").concat(historia, "[/spoiler]\n\t[spoiler=\"Conhecimentos\"]\u2022 --;\n\t\u2022 --;\n\t\u2022 --;\n    [/spoiler]\n\t[spoiler=\"Individualidades\"][b]Qualidades:[/b]\n    [color=#009900]").concat(qualidades, "[/color]\n\t\n    [b]Defeitos:[/b]\n\t[color=#ff0000]").concat(defeitos, "[/color][/spoiler]\n\t\n\t[center][b][size=16]Maestrias[/size][/b][/center]\n\t[b]Ninjutsu:[/b] ").concat(ninjutsu, " pontos\n\t[b]Taijutsu:[/b] ").concat(taijutsu, " pontos\n\t[b]Genjutsu:[/b] ").concat(genjutsu, " pontos\n\t[b]Shurikenjutsu:[/b] ").concat(shurikenjutsu, " pontos\n\t\n\t[center][b][size=16]Status[/size][/b][/center]\n\t[b]HP:[/b] ").concat(hp, " pontos\n\t[b]CH:[/b] ").concat(ch, " pontos\n\t[b]ST:[/b] ").concat(st, " pontos\n\t\n\t[center][b][size=16]Sub-status de ").concat(nome, "[/size][/b][/center]\n\t[b]Controle de Chakra:[/b] ").concat(controleChakra, " pontos\n\t[b]Selos:[/b] ").concat(selos, " pontos\n\t[b]Constitui\xE7\xE3o mental:[/b] ").concat(constituicaoMental, " pontos\n\t[b]Resist\xEAncia:[/b] ").concat(resistencia, " pontos\n\t[b]For\xE7a:[/b] ").concat(forca, " pontos\n\t[b]Velocidade:[/b] ").concat(velocidade, " pontos\n    ").concat(kekkeiGenkai === 'Sōma no Kō' ? "[center][b][size=16]Sub-status de ".concat(nomeDuplicado, "[/size][/b][/center]\n\t[b]Controle de Chakra:[/b] ").concat(controleChakraDuplicado, " pontos\n\t[b]Selos:[/b] ").concat(selosDuplicado, " pontos\n\t[b]Constitui\xE7\xE3o mental:[/b] ").concat(constituicaoMentalDuplicado, " pontos\n\t[b]Resist\xEAncia:[/b] ").concat(resistenciaDuplicado, " pontos\n\t[b]For\xE7a:[/b] ").concat(forcaDuplicado, " pontos\n\t[b]Velocidade:[/b] ").concat(velocidadeDuplicado, " pontos") : '', "\n[/justify]");
+    var message = "[justify][center][size=18][b]Ficha de ".concat(cla, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "".concat(nome, " & ").concat(nomeDuplicado) : "".concat(nome), "[/b][/size][/center]\n\t\n\t[b]Nome:[/b] ").concat(cla, " ").concat(nome, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(nomeDuplicado) : '', "\n\t[b]Classe:[/b] Ninja\n\t[b]Sexo:[/b] ").concat(sexo, " \n    [b]Orientacao sexual:[/b] ").concat(orientacaoSexual, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(orientacaoSexualDuplicado) : '', "\n\t[b]Idade:[/b] ").concat(idade, " anos\n\t[b]Peso:[/b] ").concat(peso, " kg\n\t[b]Altura:[/b] ").concat(altura, " metros\n\t[b]Anivers\xE1rio:[/b] ").concat(aniversario, "\n\t[b]Sangue:[/b] ").concat(sangue, "\n\t[b]Lateralidade:[/b] ").concat(lateralidade, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(lateralidadeDuplicado) : '', "\n    [b]Comida favorita:[/b] ").concat(comidaFavorita, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(comidaFavoritaDuplicado) : '', "\n    [b]Hobby:[/b] ").concat(hobby, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(hobbyDuplicado) : '', "\n\t[b]Cl\xE3:[/b] ").concat(cla, "\n\t[b]Origem:[/b] ").concat(origem, "\n\t[b]Elemento B\xE1sico:[/b] ").concat(elementoBasico, "\n\t[b]Elemento Avan\xE7ado:[/b] ").concat(elementoAvancado, "\n\t[b]Kekkei Genkai:[/b] ").concat(kekkeiGenkai, "\n\t[spoiler=\"Personalidade\"]").concat(personalidade, "[/spoiler]\n\t[spoiler=\"Apar\xEAncia\"]").concat(aparencia, "[/spoiler]\n\t[spoiler=\"Hist\xF3ria\"]").concat(historia, "[/spoiler]\n\t[spoiler=\"Conhecimentos\"]\u2022 --;\n\t\u2022 --;\n\t\u2022 --;\n    [/spoiler]\n\t[spoiler=\"Individualidades\"][b]Qualidades:[/b]\n    [color=#009900]").concat(qualidades, "[/color]\n\t\n    [b]Defeitos:[/b]\n\t[color=#ff0000]").concat(defeitos, "[/color][/spoiler]\n\t\n\t[center][b][size=16]Maestrias[/size][/b][/center]\n\t[b]Ninjutsu:[/b] ").concat(ninjutsu, " pontos\n\t[b]Taijutsu:[/b] ").concat(taijutsu, " pontos\n\t[b]Genjutsu:[/b] ").concat(genjutsu, " pontos\n\t[b]Shurikenjutsu:[/b] ").concat(shurikenjutsu, " pontos\n\t\n\t[center][b][size=16]Status[/size][/b][/center]\n\t[b]HP:[/b] ").concat(hp, " pontos\n\t[b]CH:[/b] ").concat(ch, " pontos\n\t[b]ST:[/b] ").concat(st, " pontos\n\t\n\t[center][b][size=16]Sub-status de ").concat(nome, "[/size][/b][/center]\n\t[b]Controle de Chakra:[/b] ").concat(controleChakra, " pontos\n\t[b]Selos:[/b] ").concat(selos, " pontos\n\t[b]Constitui\xE7\xE3o mental:[/b] ").concat(constituicaoMental, " pontos\n\t[b]Resist\xEAncia:[/b] ").concat(resistencia, " pontos\n\t[b]For\xE7a:[/b] ").concat(forca, " pontos\n\t[b]Velocidade:[/b] ").concat(velocidade, " pontos\n    ").concat(kekkeiGenkai === 'Sōma no Kō' ? "[center][b][size=16]Sub-status de ".concat(nomeDuplicado, "[/size][/b][/center]\n\t[b]Controle de Chakra:[/b] ").concat(controleChakraDuplicado, " pontos\n\t[b]Selos:[/b] ").concat(selosDuplicado, " pontos\n\t[b]Constitui\xE7\xE3o mental:[/b] ").concat(constituicaoMentalDuplicado, " pontos\n\t[b]Resist\xEAncia:[/b] ").concat(resistenciaDuplicado, " pontos\n\t[b]For\xE7a:[/b] ").concat(forcaDuplicado, " pontos\n\t[b]Velocidade:[/b] ").concat(velocidadeDuplicado, " pontos") : '', "\n[/justify]");
     var description = 'Sem descrição';
     $.post('/post', {
       f: 11,
@@ -1430,7 +1430,9 @@ $(window).on('load', function (event) {
       localStorage.setItem("constituicao-mental", constituicaoMental);
       localStorage.setItem("resistencia", resistencia);
       localStorage.setItem("forca", forca);
-      localStorage.setItem("velocidade", velocidade); // location.href = '/forum';
+      localStorage.setItem("velocidade", velocidade);
+      localStorage.setItem("cla", cla);
+      location.href = '/forum';
     }).fail(function () {
       alert('Não foi possível enviar a sua ficha. Tente novamente.');
     });
