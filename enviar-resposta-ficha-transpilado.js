@@ -12,9 +12,78 @@ $(window).on('load', function () {
   var resistencia = parseFloat(localStorage.getItem('resistencia'));
   var forca = parseFloat(localStorage.getItem('forca'));
   var velocidade = parseFloat(localStorage.getItem('velocidade'));
+  var cla = localStorage.getItem('cla');
   var jutsusHabilidadeGeral = [];
   var jutsusNinjutsu = [];
   var jutsusFukuwajutsu = [];
+  var equipamentos = [];
+  var marionetes = [];
+  var modos = [];
+
+  if (cla === 'Hoshigaki') {
+    equipamentos.push("\n[img]https://i.servimg.com/u/f62/19/85/42/92/hayate10.png[/img]\n[u][b]Katana[/b][/u]\n[b]Porte:[/b] M\xE9dio\n[b]Quantidade:[/b] 1 unidade\n[b]Descri\xE7\xE3o:[/b] A katana \xE9 geralmente definida uma espada de tamanho padr\xE3o, moderadamente curva (em oposi\xE7\xE3o ao antigo \"tachi\" estilo com mais curvatura) e com um comprimento de l\xE2mina maior que 60 cm (231\u20442 polegadas). Caracteriza-se por sua apar\xEAncia distintiva: uma l\xE2mina curva, delgada e de um \xFAnico fio com uma prote\xE7\xE3o circular ou quadrada (tsuba) e base longa para acomodar duas m\xE3os. Ela \xE9 ideal para efetuar cortes r\xE1pidos e muita usada combates de curta dist\xE2ncia.");
+  }
+
+  if (cla === 'Hōzuki') {
+    equipamentos.push("\n[img]https://i.servimg.com/u/f62/19/46/73/96/suiget10.png[/img]\n[u][b]Copo Squeeze[/b][/u]\n[b]Porte:[/b] Pequeno\n[b]Quantidade:[/b] 1 unidade (500 mls)\n[b]Descri\xE7\xE3o:[/b] Um copo squeeze simples com tampa e canudos remov\xEDveis. Embora venha nas cores azul bondi e preto, ela pode ser personalizada \xE0 vontade do usu\xE1rio.");
+  }
+
+  if (cla === 'Kurosuki') {
+    equipamentos.push("\n[img]https://i.servimg.com/u/f62/19/46/73/96/de866610.jpg[/img]\n[u][b]Garra Retr\xE1til Kurosuki[/b][/u]\n[b]Porte:[/b] M\xE9dio\n[b]Quantidade:[/b] 1 par\n[b]Descri\xE7\xE3o:[/b] Um par de luvas de couro com um compartimento em suas superf\xEDcies. Este compartimento abriga tr\xEAs l\xE2minas retr\xE1teis e curvas que podem ser acionadas com uma impuls\xE3o de chakra do usu\xE1rio. Elas podem proporcionar taijutsus, como o Kuro Tatsumaki.");
+  }
+
+  if (cla === 'Shirogane') {
+    equipamentos.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/com_ga10.png[/img]\n[b][u]Marionete Andarilha com Garras[/u][/b]\n[b]Porte:[/b] M\xE9dio\n[b]Quantidade:[/b] 1 unidade\n[b]Descri\xE7\xE3o:[/b] A forma mais comum de marionete andarilha usada pelo Cl\xE3 Shirogane. Al\xE9m dos seus 1,6 metros de altura, elas tamb\xE9m t\xEAm uma cabe\xE7a que se assemelha a da Formiga Negra, bra\xE7os longos e finos com tr\xEAs dedos feitos de l\xE2minas em cada m\xE3o, uma caixa no peito com uma f\xF3rmula de determinada t\xE9cnica, e em seu centro escrito o kanji para \"corte\" (\u65A9) na mesma, uma espinha fina conectar seu peito aos seus quadris e pernas, vestidos de preto, cal\xE7as rasgadas. Eles atacam principalmente com as suas garras, a fia\xE7\xE3o no local ou mergulhar em seus alvos. Esta marionete tamb\xE9m pode efetuar o Henge no Jutsu a fim de enganar algu\xE9m se passando por uma pessoa conhecida, embora seja preciso que o usu\xE1rio tenha o conhecimento desta bem como de sua voz para replic\xE1-la no mecanismo sonoro reprodutor de voz da marionete.\n[b]Armamentos:[/b] Nenhum.");
+  }
+
+  if (cla === 'Kamizuru') {
+    if (ninjutsu >= 1 && controleChakra >= 1.5) {
+      jutsusNinjutsu.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/58967110.png[/img]\n[u][b]Kuchiyose no Jutsu[/b][/u]\n[b]Selos:[/b] Javali, C\xE3o, P\xE1ssaro, Macaco, Bode\n[color=#ff66ff][b]Rank:[/b] E[/color] ~ [color=#660066]S[/color]\n[b]Tipo:[/b] Ofensivo, Defensivo, Suporte\n[b]Classe:[/b] Ninjutsu, Jik\u016Bkan Ninjutsu\n[b]Requisito:[/b] Controle de Chakra (1.5 pontos)\n[b]Descri\xE7\xE3o:[/b] A T\xE9cnica de Invoca\xE7\xE3o \xE9 um ninjutsu de espa\xE7o-tempo que permite que o invocador transporte animais ou pessoas atrav\xE9s de longas dist\xE2ncias instantaneamente atrav\xE9s do sangue. Antes de uma invoca\xE7\xE3o animal poder ser executada, um invocador candidato deve primeiro assinar um contrato com uma determinada esp\xE9cie. O contrato vem na forma de um pergaminho, no qual o contratante usa seu pr\xF3prio sangue para assinar o seu nome e colocar suas impress\xF5es digitais e, uma vez assinado, \xE9 v\xE1lido mesmo ap\xF3s a morte dos contratantes, desde que o contrato em si permane\xE7a intacto. Ap\xF3s isso, eles precisam apenas oferecer uma doa\xE7\xE3o adicional de sangue na m\xE3o que assinou o contrato, moldar o seu chakra com selos de m\xE3o e, em seguida, plantar a m\xE3o que assinou o contrato em uma localiza\xE7\xE3o que deseja invocar a criatura. A quantidade de chakra usada durante a invoca\xE7\xE3o determina o qu\xE3o poderosa a criatura invocada pode ser.\n[b]Nota\xB9:[/b] Esta t\xE9cnica altera seu custo de acordo com o rank da criatura invocada;\n[b]Nota\xB2:[/b] Esta t\xE9cnica permite invocar mais do que uma criatura de uma mesma esp\xE9cie simultaneamente possuindo 2.0 pontos em Controle de Chakra, contanto que se gaste chakra individualmente para cada uma delas;\n[b]Contrato:[/b] Abelhas.");
+    }
+  }
+
+  if (cla === 'Amagiri') {
+    if (ninjutsu >= 1 && controleChakra >= 1.5) {
+      jutsusNinjutsu.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/58967110.png[/img]\n[u][b]Kuchiyose no Jutsu[/b][/u]\n[b]Selos:[/b] Javali, C\xE3o, P\xE1ssaro, Macaco, Bode\n[color=#ff66ff][b]Rank:[/b] E[/color] ~ [color=#660066]S[/color]\n[b]Tipo:[/b] Ofensivo, Defensivo, Suporte\n[b]Classe:[/b] Ninjutsu, Jik\u016Bkan Ninjutsu\n[b]Requisito:[/b] Controle de Chakra (1.5 pontos)\n[b]Descri\xE7\xE3o:[/b] A T\xE9cnica de Invoca\xE7\xE3o \xE9 um ninjutsu de espa\xE7o-tempo que permite que o invocador transporte animais ou pessoas atrav\xE9s de longas dist\xE2ncias instantaneamente atrav\xE9s do sangue. Antes de uma invoca\xE7\xE3o animal poder ser executada, um invocador candidato deve primeiro assinar um contrato com uma determinada esp\xE9cie. O contrato vem na forma de um pergaminho, no qual o contratante usa seu pr\xF3prio sangue para assinar o seu nome e colocar suas impress\xF5es digitais e, uma vez assinado, \xE9 v\xE1lido mesmo ap\xF3s a morte dos contratantes, desde que o contrato em si permane\xE7a intacto. Ap\xF3s isso, eles precisam apenas oferecer uma doa\xE7\xE3o adicional de sangue na m\xE3o que assinou o contrato, moldar o seu chakra com selos de m\xE3o e, em seguida, plantar a m\xE3o que assinou o contrato em uma localiza\xE7\xE3o que deseja invocar a criatura. A quantidade de chakra usada durante a invoca\xE7\xE3o determina o qu\xE3o poderosa a criatura invocada pode ser.\n[b]Nota\xB9:[/b] Esta t\xE9cnica altera seu custo de acordo com o rank da criatura invocada;\n[b]Nota\xB2:[/b] Esta t\xE9cnica permite invocar mais do que uma criatura de uma mesma esp\xE9cie simultaneamente possuindo 2.0 pontos em Controle de Chakra, contanto que se gaste chakra individualmente para cada uma delas;\n[b]Contrato:[/b] Besouros.");
+    }
+  }
+
+  if (cla === 'Fūma') {
+    equipamentos.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/iruka10.png[/img]\n[u][b]Shuriken Gigante[/b][/u]\n[b]Porte:[/b] Grande\n[b]Quantidade:[/b] 1 unidade\n[b]Descri\xE7\xE3o:[/b] \xC9 apenas uma shuriken de quatro pontas com o di\xE2metro de um bambol\xEA. Segurando no orif\xEDcio central, o ninja rotaciona o shuriken gigante, criando o mesmo efeito do F\u016Bma Shuriken.");
+  }
+
+  if (cla === 'Hirasaka') {
+    if (ninjutsu >= 1 && controleChakra >= 1.5) {
+      jutsusNinjutsu.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/58967110.png[/img]\n[u][b]Kuchiyose no Jutsu[/b][/u]\n[b]Selos:[/b] Javali, C\xE3o, P\xE1ssaro, Macaco, Bode\n[color=#ff66ff][b]Rank:[/b] E[/color] ~ [color=#660066]S[/color]\n[b]Tipo:[/b] Ofensivo, Defensivo, Suporte\n[b]Classe:[/b] Ninjutsu, Jik\u016Bkan Ninjutsu\n[b]Requisito:[/b] Controle de Chakra (1.5 pontos)\n[b]Descri\xE7\xE3o:[/b] A T\xE9cnica de Invoca\xE7\xE3o \xE9 um ninjutsu de espa\xE7o-tempo que permite que o invocador transporte animais ou pessoas atrav\xE9s de longas dist\xE2ncias instantaneamente atrav\xE9s do sangue. Antes de uma invoca\xE7\xE3o animal poder ser executada, um invocador candidato deve primeiro assinar um contrato com uma determinada esp\xE9cie. O contrato vem na forma de um pergaminho, no qual o contratante usa seu pr\xF3prio sangue para assinar o seu nome e colocar suas impress\xF5es digitais e, uma vez assinado, \xE9 v\xE1lido mesmo ap\xF3s a morte dos contratantes, desde que o contrato em si permane\xE7a intacto. Ap\xF3s isso, eles precisam apenas oferecer uma doa\xE7\xE3o adicional de sangue na m\xE3o que assinou o contrato, moldar o seu chakra com selos de m\xE3o e, em seguida, plantar a m\xE3o que assinou o contrato em uma localiza\xE7\xE3o que deseja invocar a criatura. A quantidade de chakra usada durante a invoca\xE7\xE3o determina o qu\xE3o poderosa a criatura invocada pode ser.\n[b]Nota\xB9:[/b] Esta t\xE9cnica altera seu custo de acordo com o rank da criatura invocada;\n[b]Nota\xB2:[/b] Esta t\xE9cnica permite invocar mais do que uma criatura de uma mesma esp\xE9cie simultaneamente possuindo 2.0 pontos em Controle de Chakra, contanto que se gaste chakra individualmente para cada uma delas;\n[b]Contrato:[/b] Nuibas.");
+    }
+
+    equipamentos.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/scree292.png[/img]\n[b][u]M\xE1scara Oni[/u][/b]\n[b]Porte:[/b] Pequeno\n[b]Quantidade:[/b] 1 unidade\n[b]Descri\xE7\xE3o:[/b] A m\xE1scara Oni \xE9 um artefato simb\xF3lico com a apar\xEAncia de um dem\xF4nio, geralmente usado para eventos festivos e cerimoniais, como a passagem do ano novo lunar. A m\xE1scara Oni do cl\xE3 Hirasaka, no entanto, serve para um prop\xF3sito ainda mais m\xEDstico e obscuro. Dizem que ela carrega a verdadeira forma de um dem\xF4nio, que \xE9 selada atrav\xE9s de um papel de selamento preso em sua testa. Quando um membro do cl\xE3 Hirasaka a veste, ele \xE9 rapidamente possu\xEDdo pelo esp\xEDrito maligno, ganhando acesso \xE0 sua apar\xEAncia e poderes.");
+  }
+
+  if (cla === 'Jūgo') {
+    modos.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/jugo11.png[/img]\n[b][u]Senninka \u2022 Est\xE1gio 1[/u][/b]\n[color=#990099][b]Rank:[/b] S[/color]\n[b]Tipo:[/b] Suporte, Passivo\n[b]Classe:[/b] Hijutsu, Modo\n[b]Requisito:[/b] Nenhum\n[b]Descri\xE7\xE3o:[/b] Transforma\xE7\xE3o S\xE1bia (\u4ED9\u4EBA\u5316, Senninka) \xE9 uma transforma\xE7\xE3o que consiste em uma muta\xE7\xE3o por absorver energia natural em grande quantidade e de forma passiva, que resulta em um aumento da capacidade f\xEDsica e a possibilidade de realizar v\xE1rias proezas que mudam de forma. Essa \xE9 uma habilidade comum dentro do cl\xE3 de J\u016Bgo e para aqueles que obt\xEAm suas c\xE9lulas transplantadas em seu corpo. Esta transforma\xE7\xE3o \xE9 uma habilidade multifacetada que lhe permite realizar feitos que v\xE3o desde a cria\xE7\xE3o de v\xE1rios ap\xEAndices como armas at\xE9 mesmo consumir outros seres humanos (Saib\u014D Ky\u016Bin), bem como um aumento geral em suas capacidades f\xEDsicas. As transforma\xE7\xF5es do corpo resultadas por esta capacidade possuem um padr\xE3o similar ao cobre na \xE1rea onde a transforma\xE7\xE3o ocorre, a pele sobre a \xE1rea afetada torna-se castanha, e se ocorre a transforma\xE7\xE3o nos olhos, a escler\xF3tica fica escura tamb\xE9m. Um usu\xE1rio pode transplantar a sua carne (Saib\u014D Haishutsu) com algu\xE9m compat\xEDvel com tais experi\xEAncias, e acontecimentos de uma les\xE3o severa, mas isso far\xE1 com que o corpo do usu\xE1rio diminua de tamanho e idade. Embora membros desse cl\xE3 possam absorver energia natural passivamente sem ser transformado em uma est\xE1tua, como acontece com aqueles que n\xE3o conseguiram aprender o senjutsu, seus corpos n\xE3o podem controlar os grandes picos de energia que acompanham a transforma\xE7\xE3o e, como tal, s\xE3o propensos a esporadicamente perder as estribeiras.\n[b]Energia Natural Coletada:[/b] 0/1600 pontos");
+  }
+
+  if (cla === 'Kedōin') {
+    equipamentos.push("\n[img]https://i.servimg.com/u/f62/19/85/42/92/habili10.png[/img]\n[b][u]M\xE1scara Ked\u014Din[/u][/b]\n[b]Porte:[/b] Pequeno\n[b]Quantidade:[/b] 1 unidade\n[b]Descri\xE7\xE3o:[/b] Uma m\xE1scara simples, cujo prop\xF3sito serve de preparativo da t\xE9cnica Kao Utsushi no Jutsu do cl\xE3 Ked\u014Din. Assim que o jutsu \xE9 iniciado, a m\xE1scara molda-se conforme o rosto do alvo.");
+  }
+
+  if (cla === 'Rinha') {
+    equipamentos.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/tzocni21.png[/img]\n[u][b]Esfera de Cristal[/b][/u]\n[b]Porte:[/b] M\xE9dio\n[b]Quantidade:[/b] 2 unidades\n[b]Descri\xE7\xE3o:[/b] Esta orbe de vidro pode ser usada por ninjas experientes para observar outras pessoas como uma c\xE2mera atrav\xE9s do T\u014Dmegane no Jutsu, ou outras fun\xE7\xF5es, como selamentos e afins. Ela \xE9 leve, por\xE9m fr\xE1gil, devendo-se ter cuidado ao manuse\xE1-la muito bruscamente.");
+  }
+
+  if (cla === 'Tenrō') {
+    if (ninjutsu >= 2 && controleChakra >= 0.2) {
+      jutsusNinjutsu.push("\n[img]https://i.servimg.com/u/f97/19/55/10/92/sensor10.png[/img]\n[u][b]Kanchi no Jutsu[/b][/u]\n[color=#0033ff][b]Rank:[/b] D[/color]\n[b]Tipo:[/b] Suporte, Passivo\n[b]Classe:[/b] Ninjutsu\n[b]Requisito:[/b] Controle de Chakra (0.2 pontos)\n[b]Descri\xE7\xE3o:[/b] A T\xE9cnica Sensorial, usada pelos shinobi tipo sensor, permite ao usu\xE1rio reconhecer chakra em seu estado bruto. Usando esta t\xE9cnica, os sensores podem facilmente detectar e rastrear alvos, sabendo distinguir assinaturas, tipos, quantidades, localiza\xE7\xF5es e varia\xE7\xF5es de fluxos de chakra. Embora esta habilidade conceda aos seus usu\xE1rios uma capacidade sensorial elevada, ela n\xE3o \xE9 capaz de reconhecer sistemas de circula\xE7\xE3o de chakra e tenketsus, ou mesmo pontos isolados no corpo do objeto emissor onde h\xE1 maior concentra\xE7\xE3o de chakra. O alcance desta t\xE9cnica varia entre os sensores.\n[b]Varia\xE7\xE3o:[/b] A T\xE9cnica Sensorial usada pelos membros do Cl\xE3 Tenr\u014D permite ao usu\xE1rio rastrear chakra comum atrav\xE9s do cheiro e somente por ele, com dist\xE2ncias variadas relacionadas ao seu controle de chakra pr\xF3prio e com interfer\xEAncia do vento.");
+    }
+
+    equipamentos.push("\n[img]https://i.servimg.com/u/f62/19/85/42/92/110.jpg[/img]\n[u][b]Tsume Ashi[/b][/u]\n[b]Porte:[/b] Pequeno\n[b]Quantidade:[/b] 1 par\n[b]Descri\xE7\xE3o: [/b]Os membros do Cl\xE3 Tenr\u014D possuem um artefato muito peculiar e bem f\xE1cil de usar pelos membros, onde essas garras de p\xE9 funcionam muito bem em combates corpo-a-corpo.");
+  }
+
+  if (cla === 'Yomi') {
+    equipamentos.push("\n[img]https://i.servimg.com/u/f62/19/46/73/96/bistur10.png[/img]\n[u][b]Bisturi[/b][/u]\n[b]Porte:[/b] Pequeno\n[b]Quantidade:[/b] 1 unidade\n[b]Descri\xE7\xE3o: [/b]Um bisturi \xE9 um pequeno instrumento de l\xE2mina extremamente afiada destinada a cortar atrav\xE9s da pele, tend\xF5es e m\xFAsculos. Ele \xE9 usado principalmente por iry\u014D-nin, m\xE9dicos, ou praticamente qualquer pessoa com conhecimentos m\xE9dicos para realizar cirurgias. No entanto, devido \xE0 sua agudeza, ele tamb\xE9m pode ser usado como uma arma potente contra o inimigo. Kabuto Yakushi tinha conhecimento para fazer isso em uma tentativa de matar Sasuke.");
+  }
+
   jutsusFukuwajutsu.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/mudanz10.png[/img]\n[u][b]Onsei Henkan no Jutsu[/b][/u]\n[color=#ff66ff][b]Rank:[/b] E[/color]\n[b]Tipo:[/b] Suporte\n[b]Classe:[/b] Fukuwajutsu\n[b]Requisito:[/b] Nenhum\n[b]Descri\xE7\xE3o:[/b] Essa t\xE9cnica permite que seu usu\xE1rio seja capaz de ajustar e alterar a sua voz, permitindo-lhe usar diferentes vozes e at\xE9 mesmo imitar a de uma outra pessoa. Isso \xE9 geralmente utilizado em conjunto com t\xE9cnicas de transforma\xE7\xE3o, tornando disfarces ainda mais convincentes. O uso dessa t\xE9cnica por longos per\xEDodos de tempo \xE9 penoso para garganta do usu\xE1rio. Na maior parte das vezes em que essa t\xE9cnica foi usada, foram utilizadas t\xE9cnicas de transforma\xE7\xE3o pouco convencionais, que exigiram tal altera\xE7\xE3o na voz. Quando o Henge no Jutsu \xE9 usado, a voz do usu\xE1rio se altera instintivamente, mas n\xE3o se sabe se ela est\xE1 relacionado de alguma forma com essa t\xE9cnica. Apesar de Kakashi mencionar que o uso prolongado da t\xE9cnica \xE9 penoso \xE0 garganta, Obito e Sasori usaram a voz frequentemente sem qualquer dano \xE0 garganta. \xC9 desconhecido se isso se deve ao corpo de Sasori ser uma marionete e o corpo de Obito estar repleto de c\xE9lulas curativas de Hashirama.\n");
   jutsusHabilidadeGeral.push("\n[img]https://i.servimg.com/u/f93/19/85/42/92/16010.png[/img]\n[b][u]Ninp\u014D \u2022 Kigurumi no Jutsu[/u][/b]\n[color=#ff66ff][b]Rank:[/b] E[/color]\n[b]Tipo:[/b] Suporte\n[b]Classe:[/b] Habilidade Geral\n[b]Requisito:[/b] Nenhum\n[b]Descri\xE7\xE3o:[/b] Esta \xE9 uma habilidade geral em que um ninja disfar\xE7a-se com um traje de fantasia para enganar o oponente. Ela pode ser usada em conjunto com a T\xE9cnica de Transforma\xE7\xE3o, para um efeito mais realista ou mesmo em conjunto com alguma t\xE9cnica de confus\xE3o visual, como convocar gaivotas e outros p\xE1ssaros. O usu\xE1rio ainda pode adaptar sua voz para confundir o usu\xE1rio com essa t\xE9cnica. Esta habilidade simples, embora pare\xE7a in\xFAtil devido \xE0 T\xE9cnica de Transforma\xE7\xE3o, mostrou-se \xFAtil, visto que o ninja n\xE3o faz uso de chakra para se disfar\xE7ar.\n[b]Nota:[/b] Requer uma fantasia ou vestimenta de disfarce.\n\n[img]https://i.servimg.com/u/f93/19/85/42/92/negazz10.png[/img]\n[u][b]Bik\u014D Ninjutsu[/b][/u]\n[color=#ff66ff][b]Rank:[/b] E[/color]\n[b]Tipo:[/b] Suporte\n[b]Classe:[/b] Habilidade Geral\n[b]Requisito:[/b] Nenhum\n[b]Descri\xE7\xE3o:[/b] Esta \xE9 uma habilidade geral que permite que um ninja esconda-se dentro de uma caixa onde torna-o invis\xEDvel aos olhos de quem v\xEA. Esta habilidade simples, embora pare\xE7a in\xFAtil, mostrou-se ter certa relev\xE2ncia, visto que aqueles que observam a caixa, a examina como um simples objeto inanimado, tornando irrelevante e dando possibilidade de fuga ao ninja que encontra-se dentro da mesma. Apesar da t\xE9cnica ter uma mec\xE2nica muito simples, Konohamaru, Moegi e Udon usaram-na de forma equivocada, uma vez que correram atr\xE1s de Naruto antes de fazer sua entrevista com os participantes da segunda fase dos Exames Ch\u016Bnin.\n");
 
@@ -62,13 +131,30 @@ $(window).on('load', function () {
   }
 
   localStorage.removeItem('idTopicoFicha');
+  localStorage.removeItem('ninjutsu');
+  localStorage.removeItem('taijutsu');
+  localStorage.removeItem('genjutsu');
+  localStorage.removeItem('shurikenjutsu');
+  localStorage.removeItem('controle-chakra');
+  localStorage.removeItem('selos');
+  localStorage.removeItem('constituicao-mental');
+  localStorage.removeItem('resistencia');
+  localStorage.removeItem('forca');
+  localStorage.removeItem('velocidade');
+  localStorage.removeItem('cla');
   jutsusHabilidadeGeral = jutsusHabilidadeGeral.join('|');
   jutsusNinjutsu = jutsusNinjutsu.join('|');
   jutsusFukuwajutsu = jutsusFukuwajutsu.join('|');
+  equipamentos = equipamentos.join('|');
+  marionetes = marionetes.join('|');
+  modos = modos.join('|');
   jutsusHabilidadeGeral = jutsusHabilidadeGeral.toString().split('|').join('\n');
   jutsusNinjutsu = jutsusNinjutsu.toString().split('|').join('\n');
   jutsusFukuwajutsu = jutsusFukuwajutsu.toString().split('|').join('\n');
-  var message = "[spoiler=\"Habilidade Geral\"]".concat(jutsusHabilidadeGeral, "[/spoiler]\n[spoiler=\"Ninjutsu\"]").concat(jutsusNinjutsu, "[/spoiler]\n[spoiler=\"Fukuwajutsu\"]").concat(jutsusFukuwajutsu, "[/spoiler]");
+  equipamentos = equipamentos.toString().split('|').join('\n');
+  marionetes = marionetes.toString().split('|').join('\n');
+  modos = modos.toString().split('|').join('\n');
+  var message = "[hide][spoiler=\"Habilidades Gerais\"]".concat(jutsusHabilidadeGeral, "[/spoiler]\n[spoiler=\"Ninjutsus\"]").concat(jutsusNinjutsu, "[/spoiler]\n[spoiler=\"Fukuwajutsus\"]").concat(jutsusFukuwajutsu, "[/spoiler]\n").concat(equipamentos.length > 0 ? "[spoiler=\"Equipamentos\"]".concat(equipamentos, "[/spoiler]") : '', "\n").concat(marionetes.length > 0 ? "[spoiler=\"Marionetes\"]".concat(marionetes, "[/spoiler]") : '', "\n").concat(modos.length > 0 ? "[spoiler=\"Modos\"]".concat(modos, "[/spoiler]") : '', "[/hide]");
 
   if (idTopicoFicha) {
     alert('Sua ficha foi enviada, aguarde aprovação');
