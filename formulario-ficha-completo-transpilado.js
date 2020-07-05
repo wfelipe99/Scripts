@@ -55,7 +55,7 @@ font-weight: normal;
 font-style: normal;
 cursor: default;
 vertical-align: middle;
-width:auto;
+width: auto;
 max-width:100%;/* Bug IE */
 padding: 1px;
 }
@@ -154,16 +154,45 @@ cursor: text;
 	<h1 data-type="field">
 						Ficha de Personagem
 	</h1>
+  <dl>
+	<dt>Kekkei Genkai</dt>
+	<dd>
+	<select id="kekkei-genkai" data-type="field">
+		<option value="Nenhuma">Nenhuma</option>
+		<option value="Akagan">Akagan</option>
+		<option value="Byakugan">Byakugan</option>
+		<option value="Demônio Ido">Demônio Ido</option>
+		<option value="Hansha Seishin">Hansha Seishin</option>
+		<option value="Ketsuryūgan">Ketsuryūgan</option>
+		<option value="Mangekyōgan">Mangekyōgan</option>
+		<option value="Sharingan">Sharingan</option>
+		<option value="Shikotsumyaku">Shikotsumyaku</option>
+		<option value="Sōma no Kō">Sōma no Kō</option>
+		<option value="Yome">Yome</option>
+	</select>
+	</dd>
+	</dl>
 	<dl>
-	<dt>Nome
+          <dt><span id="nome-corpo-principal">Nome</span>
 	<span style="color: #ff0000;">*</span>
 	</dt>
 	<dd>
-	<input id="nome" value="Indefinido" data-type="field" type="text" />
+	<input id="nome" value="Indefinido" data-type="field" type="text" required/>
 	</dd>
 	</dl>
 	<p data-type="field">
 	<span style="font-size: 10.56px; color: #ff0000;">*Não colocar o nome do clã junto.</span>
+	</p>
+	<dl id="nome-duplicado-wrapper">
+	<dt>Nome do Corpo Secundário
+	<span style="color: #ff0000;">*</span>
+	</dt>
+	<dd>
+	<input id="nome-duplicado" value="Indefinido" data-type="field" type="text" required/>
+	</dd>
+	</dl>
+	<p data-type="field">
+	<span id="aviso-nome-duplicado"style="font-size: 10.56px; color: #ff0000;">*Não colocar o nome do clã junto.</span>
 	</p>
 	<dl>
 	<dt>Sexo</dt>
@@ -175,22 +204,34 @@ cursor: text;
 	</select>
 	</dd>
 	</dl>
+  <dl>
+    <dt><span id="orientacao-sexual-corpo-principal">Orientação sexual</span></dt>
+	<dd>
+	<input id="orientacao-sexual" value="Heterossexual" data-type="field" type="text" required/>
+	</dd>
+	</dl>
+          <dl id="orientacao-sexual-duplicado-wrapper">
+	<dt>Orientação Sexual do Corpo Secundário</dt>
+	<dd>
+	<input id="orientacao-sexual-duplicado" value="Heterossexual" data-type="field" type="text" required/>
+	</dd>
+	</dl>
 	<dl>
 	<dt>Idade</dt>
 	<dd>
-	<input id="idade" step="1" value="7" data-type="field" max="30" min="7" type="number" />
+	<input id="idade" step="1" value="7" data-type="field" max="30" min="7" type="number"/>
 	</dd>
 	</dl>
 	<dl>
 	<dt>Peso</dt>
 	<dd>
-	<input id="peso" value="50" data-type="field" type="text" />
+	<input id="peso" value="50" data-type="field" type="text" required/>
 	</dd>
 	</dl>
 	<dl>
 	<dt>Altura</dt>
 	<dd>
-	<input id="altura" value="1,50" data-type="field" type="text" />
+	<input id="altura" value="1,50" data-type="field" type="text" required/>
 	</dd>
 	</dl>
 	<dl>
@@ -222,7 +263,7 @@ cursor: text;
 	</dd>
 	</dl>
 	<dl>
-	<dt>Lateralidade
+          <dt><span id="lateralidade-corpo-principal">Lateralidade</span>
 	<span style="color: #ff0000;">*</span>
 	</dt>
 	<dd>
@@ -234,8 +275,21 @@ cursor: text;
 	</select>
 	</dd>
 	</dl>
+          <dl id="lateralidade-duplicado-wrapper">
+	<dt>Lateralidade do Corpo Secundário
+	<span style="color: #ff0000;">*</span>
+	</dt>
+	<dd>
+	<select id="lateralidade-duplicado" data-type="field">
+		<option value="Indefinido">Indefinido</option>
+		<option value="Canhoto(a)">Canhoto(a)</option>
+		<option value="Destro(a)">Destro(a)</option>
+		<option value="Ambidestro(a)">Ambidestro(a)</option>
+	</select>
+	</dd>
+	</dl>
 	<p data-type="field">
-	<span style="font-size: 10.56px; color: #ff0000;">*Ambidestro(a) deve ser selecionado apenas se o usuário possuir a individualidade de qualidade "Ambidestria".</span>
+	<span id="aviso-lateralidade-duplicado" style="font-size: 10.56px; color: #ff0000;">*Ambidestro(a) deve ser selecionado apenas se o usuário possuir a individualidade de qualidade "Ambidestria".</span>
 	</p>
 	<dl>
 	<dt>Clã</dt>
@@ -340,56 +394,53 @@ cursor: text;
 	</dd>
 	</dl>
 	<dl>
-	<dt>Kekkei Genkai</dt>
+	<dt>
+	<span id="comida-favorita-corpo-principal" style="font-size: 11.616px;">Comida Favorita</span>
+	</dt>
 	<dd>
-	<select id="kekkei-genkai" data-type="field">
-		<option value="Nenhuma">Nenhuma</option>
-		<option value="Akagan">Akagan</option>
-		<option value="Byakugan">Byakugan</option>
-		<option value="Demônio Ido">Demônio Ido</option>
-		<option value="Hansha Seishin">Hansha Seishin</option>
-		<option value="Ketsuryūgan">Ketsuryūgan</option>
-		<option value="Mangekyōgan">Mangekyōgan</option>
-		<option value="Rinnegan">Rinnegan</option>
-		<option value="Sharingan">Sharingan</option>
-		<option value="Shikotsumyaku">Shikotsumyaku</option>
-		<option value="Sōma no Kō">Sōma no Kō</option>
-		<option value="Yome">Yome</option>
-	</select>
+	<input id="comida-favorita" value="Nenhuma" data-type="field" type="text" />
+	</dd>
+	</dl>
+          <dl id="comida-favorita-duplicado-wrapper">
+	<dt>
+	<span style="font-size: 11.616px;">Comida Favorita do Corpo Secundário</span>
+	</dt>
+	<dd>
+	<input id="comida-favorita-duplicado" value="Nenhuma" data-type="field" type="text" />
 	</dd>
 	</dl>
 	<dl>
 	<dt>
-	<span style="font-size: 11.616px;">Comida Favorita</span>
+	<span id="hobby-corpo-principal" style="font-size: 11.616px;">Hobby</span>
 	</dt>
 	<dd>
-	<input id="field60" value="Nenhuma" data-type="field" type="text" />
+	<input id="hobbie" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
-	<dl>
+          <dl id="hobby-duplicado-wrapper">
 	<dt>
-	<span style="font-size: 11.616px;">Hobbie</span>
+	<span style="font-size: 11.616px;">Hobby do Corpo Secundário</span>
 	</dt>
 	<dd>
-	<input id="field61" value="Nenhum" data-type="field" type="text" />
+	<input id="hobby-duplicado" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
 	<dl>
 	<dt>Aparência</dt>
 	<dd>
-	<textarea style="margin: 0px; height: 33px; width: 324px;" id="aparencia" data-type="field"></textarea>
+	<textarea style="margin: 0px; height: 148px; width: 720px;" id="aparencia" data-type="field" required></textarea>
 	</dd>
 	</dl>
 	<dl>
 	<dt>Personalidade</dt>
 	<dd>
-	<textarea id="personalidade" data-type="field"></textarea>
+	<textarea id="personalidade" data-type="field" style="width: 720px; height: 254px;" required></textarea>
 	</dd>
 	</dl>
 	<dl>
 	<dt>História</dt>
 	<dd>
-	<textarea id="historia" data-type="field"></textarea>
+	<textarea id="historia" data-type="field" style="width: 720px; height: 381px;" required></textarea>
 	</dd>
 	</dl>
 	<h3 data-type="field">
@@ -400,7 +451,7 @@ cursor: text;
 	<span style="color: #ff0000;">*</span>
 	</dt>
 	<dd>
-	<select id="qualidades" multiple="multiple" data-sepadador=", " data-type="field">
+	<select id="qualidades" multiple="multiple" data-sepadador=", " data-type="field" style="width: 300px; height: 200px;">
 		<option value="Alta flexibilidade [1 ponto]">Alta flexibilidade [1 ponto]</option>
 		<option value="Ambidestria [1 ponto]">Ambidestria [1 ponto]</option>
 		<option value="Comunicação animal* [1 ponto]">Comunicação animal* [1 ponto]</option>
@@ -438,7 +489,7 @@ cursor: text;
 	<p data-type="field">
 	<span style="font-size: 10.56px; color: #ff0000;">*As qualidades marcadas com um asterisco (*) possuem tipos variáveis que devem ser descritos abaixo de acordo com a ordem da lista de qualidades:</span>
 	</p>
-	<dl id="tipo-comunicacao-animal-wrapper" style="display: none;">
+	<dl id="tipo-comunicacao-animal-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Família animal</span>
 	</dt>
@@ -446,7 +497,7 @@ cursor: text;
 	<input id="tipo-comunicacao-animal" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
-	<dl id="tipo-criatividade-elevada-wrapper" style="display: none;">
+	<dl id="tipo-criatividade-elevada-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Criatividade elevada em</span>
 	</dt>
@@ -459,7 +510,7 @@ cursor: text;
 	<span style="color: #ff0000;">*</span>
 	</dt>
 	<dd>
-	<select id="defeitos" multiple="multiple" data-sepadador=", " data-type="field">
+	<select id="defeitos" multiple="multiple" data-sepadador=", " data-type="field" style="width: 300px; height: 200px;">
 		<option value="Alergia* [1 ponto]">Alergia* [1 ponto]</option>
 		<option value="Cleptomania [1 ponto]">Cleptomania [1 ponto]</option>
 		<option value="Depravação [1 ponto]">Depravação [1 ponto]</option>
@@ -501,7 +552,7 @@ cursor: text;
 	<p data-type="field">
 	<span style="font-size: 10.56px; color: #ff0000;">*Os defeitos marcados com um asterisco (*) possuem tipos variáveis que devem ser descritos abaixo de acordo com a ordem da lista de defeitos:</span>
 	</p>
-	<dl id="tipo-alergia-wrapper" style="display: none;">
+	<dl id="tipo-alergia-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Objeto da alergia</span>
 	</dt>
@@ -509,7 +560,7 @@ cursor: text;
 	<input id="tipo-alergia" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
-	<dl id="tipo-estresse-pos-traumatico-wrapper" style="display: none;">
+	<dl id="tipo-estresse-pos-traumatico-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Tipo do estresse pós-traumático</span>
 	</dt>
@@ -517,7 +568,7 @@ cursor: text;
 	<input id="tipo-estresse-pos-traumatico" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
-	<dl id="tipo-fanatismo-wrapper" style="display: none;">
+	<dl id="tipo-fanatismo-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Objeto do fanatismo</span>
 	</dt>
@@ -525,7 +576,7 @@ cursor: text;
 	<input id="tipo-fanatismo" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
-  <dl id="tipo-fobia-wrapper" style="display: none;">
+  <dl id="tipo-fobia-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Objeto da fobia</span>
 	</dt>
@@ -533,7 +584,7 @@ cursor: text;
 	<input id="tipo-fobia" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
-  <dl id="tipo-vicio-wrapper" style="display: none;">
+  <dl id="tipo-vicio-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Objeto do vício</span>
 	</dt>
@@ -541,7 +592,7 @@ cursor: text;
 	<input id="tipo-vicio" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
-  <dl id="tipo-deficiencia-wrapper" style="display: none;">
+  <dl id="tipo-deficiencia-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Tipo da deficiência</span>
 	</dt>
@@ -549,7 +600,7 @@ cursor: text;
 	<input id="tipo-deficiencia" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
-  <dl id="tipo-doenca-wrapper" style="display: none;">
+  <dl id="tipo-doenca-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Tipo da doença</span>
 	</dt>
@@ -557,7 +608,7 @@ cursor: text;
 	<input id="tipo-doenca" value="Nenhum" data-type="field" type="text" />
 	</dd>
 	</dl>
-  <dl id="tipo-doenca-terminal-wrapper" style="display: none;">
+  <dl id="tipo-doenca-terminal-wrapper">
 	<dt>
 	<span style="font-size: 11.616px;">Tipo da doença terminal</span>
 	</dt>
@@ -595,7 +646,7 @@ cursor: text;
 	<input id="shurikenjutsu" step="1" value="0" data-type="field" max="3" min="0" type="number" />
 	</dd>
 	</dl>
-	<h3 data-type="field">
+	<h3 id="substatus-corpo-principal" data-type="field">
 						Sub-status
 	</h3>
 	<p data-type="field">
@@ -637,7 +688,52 @@ cursor: text;
 	<input id="velocidade" value="0.0" data-type="field" type="text" />
 	</dd>
 	</dl>
-  <button id="enviar">Enviar</button>
+
+          <span id="substatus-duplicado-wrapper">
+          <h3 id="substatus-corpo-secundario" data-type="field">
+						Sub-status do Corpo Secundário
+	</h3>
+	<p data-type="field">
+						Distribua 3.0 pontos
+	</p>
+	<dl>
+	<dt>Controle de Chakra</dt>
+	<dd>
+	<input id="controle-chakra-duplicado" value="0.0" data-type="field" type="text" />
+	</dd>
+	</dl>
+	<dl>
+	<dt>Selos</dt>
+	<dd>
+	<input id="selos-duplicado" value="0.0" data-type="field" type="text" />
+	</dd>
+	</dl>
+	<dl>
+	<dt>Constituição Mental</dt>
+	<dd>
+	<input id="constituicao-mental-duplicado" value="0.0" data-type="field" type="text" />
+	</dd>
+	</dl>
+	<dl>
+	<dt>Resistência</dt>
+	<dd>
+	<input id="resistencia-duplicado" value="0.0" data-type="field" type="text" />
+	</dd>
+	</dl>
+	<dl>
+	<dt>Força</dt>
+	<dd>
+	<input id="forca-duplicado" value="0.0" data-type="field" type="text" />
+	</dd>
+	</dl>
+	<dl>
+	<dt>Velocidade</dt>
+	<dd>
+	<input id="velocidade-duplicado" value="0.0" data-type="field" type="text" />
+	</dd>
+</dl>
+</span>
+<input type="submit" id="enviar" value="Enviar"></input>
 	</form>
 
 <script src="http://jscolor.com/jscolor/jscolor.js" type="text/javascript"></script>
@@ -665,7 +761,17 @@ $(document).ready(function () {
       event.preventDefault();
     }
   });
+  $('#controle-chakra-duplicado').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
   $('#selos').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#selos-duplicado').keypress(function (event) {
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
       event.preventDefault();
     }
@@ -675,7 +781,17 @@ $(document).ready(function () {
       event.preventDefault();
     }
   });
+  $('#constituicao-mental-duplicado').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
   $('#resistencia').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#resistencia-duplicado').keypress(function (event) {
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
       event.preventDefault();
     }
@@ -685,13 +801,30 @@ $(document).ready(function () {
       event.preventDefault();
     }
   });
+  $('#forca-duplicado').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
   $('#velocidade').keypress(function (event) {
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+  $('#velocidade-duplicado').keypress(function (event) {
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
       event.preventDefault();
     }
   });
   $('#controle-chakra').keypress(function () {
     var controleChakraCounter = $('#controle-chakra').val().length;
+
+    if (controleChakraCounter >= 3) {
+      return false;
+    }
+  });
+  $('#controle-chakra-duplicado').keypress(function () {
+    var controleChakraCounter = $(this).val().length;
 
     if (controleChakraCounter >= 3) {
       return false;
@@ -704,8 +837,22 @@ $(document).ready(function () {
       return false;
     }
   });
+  $('#selos-duplicado').keypress(function () {
+    var selosCounter = $(this).val().length;
+
+    if (selosCounter >= 3) {
+      return false;
+    }
+  });
   $('#constituicao-mental').keypress(function () {
     var constituicaoMentalCounter = $('#constituicao-mental').val().length;
+
+    if (constituicaoMentalCounter >= 3) {
+      return false;
+    }
+  });
+  $('#constituicao-mental-duplicado').keypress(function () {
+    var constituicaoMentalCounter = $(this).val().length;
 
     if (constituicaoMentalCounter >= 3) {
       return false;
@@ -718,8 +865,22 @@ $(document).ready(function () {
       return false;
     }
   });
+  $('#resistencia-duplicado').keypress(function () {
+    var resistenciaCounter = $(this).val().length;
+
+    if (resistenciaCounter >= 3) {
+      return false;
+    }
+  });
   $('#forca').keypress(function () {
     var forcaCounter = $('#forca').val().length;
+
+    if (forcaCounter >= 3) {
+      return false;
+    }
+  });
+  $('#forca-duplicado').keypress(function () {
+    var forcaCounter = $(this).val().length;
 
     if (forcaCounter >= 3) {
       return false;
@@ -732,8 +893,18 @@ $(document).ready(function () {
       return false;
     }
   });
+  $('#velocidade-duplicado').keypress(function () {
+    var velocidadeCounter = $(this).val().length;
+
+    if (velocidadeCounter >= 3) {
+      return false;
+    }
+  });
   $('#nome').click(function () {
     $('#nome').val('');
+  });
+  $('#nome-duplicado').click(function () {
+    $(this).val('');
   });
   $('#peso').click(function () {
     $('#peso').val('');
@@ -744,8 +915,14 @@ $(document).ready(function () {
   $('#comida-favorita').click(function () {
     $('#comida-favorita').val('');
   });
+  $('#comida-favorita-duplicado').click(function () {
+    $(this).val('');
+  });
   $('#hobbie').click(function () {
     $('#hobbie').val('');
+  });
+  $('#hobby-duplicado').click(function () {
+    $(this).val('');
   });
   $('#tipo-comunicacao-animal').click(function () {
     $(this).val('');
@@ -778,6 +955,53 @@ $(document).ready(function () {
     $(this).val('');
   });
 });
+$('#kekkei-genkai').change(function () {
+  var kekkeiGenkai = $(this).val();
+
+  if (kekkeiGenkai === 'Sōma no Kō') {
+    $('#nome-duplicado-wrapper').show();
+    $('#aviso-nome-duplicado').show();
+    $('#orientacao-sexual-duplicado-wrapper').show();
+    $('#lateralidade-duplicado-wrapper').show();
+    $('#aviso-lateralidade-duplicado-wrapper').show();
+    $('#comida-favorita-duplicado-wrapper').show();
+    $('#hobby-duplicado-wrapper').show();
+    $('#substatus-duplicado-wrapper').show();
+    $("#cla option[value='Nenhum']").attr('selected', 'selected');
+    $("#elemento-avancado option[value='Nenhum']").attr('selected', 'selected');
+    $('#cla').attr('disabled', true);
+    $('#elemento-avancado').attr('disabled', true);
+  } else {
+    $('#nome-duplicado-wrapper').hide();
+    $('#aviso-nome-duplicado').hide();
+    $('#orientacao-sexual-duplicado-wrapper').hide();
+    $('#lateralidade-duplicado-wrapper').hide();
+    $('#aviso-lateralidade-duplicado-wrapper').hide();
+    $('#comida-favorita-duplicado-wrapper').hide();
+    $('#hobby-duplicado-wrapper').hide();
+    $('#substatus-duplicado-wrapper').hide();
+    $("#cla option[value='Nenhum']").attr('selected', 'selected');
+    $("#elemento-avancado option[value='Nenhum']").attr('selected', 'selected');
+    $('#cla').attr('disabled', false);
+    $('#elemento-avancado').attr('disabled', false);
+  }
+
+  if (kekkeiGenkai === 'Akagan' || kekkeiGenkai === 'Yome') {
+    $("#cla option[value='Nenhum']").attr('selected', 'selected');
+    $('#cla').attr('disabled', true);
+  } else {
+    $("#cla option[value='Nenhum']").attr('selected', 'selected');
+    $('#cla').attr('disabled', false);
+  }
+
+  if (kekkeiGenkai === 'Demônio Ido' || kekkeiGenkai === 'Hansha Seishin' || kekkeiGenkai === 'Mangekyōgan') {
+    $("#elemento-avancado option[value='Nenhum']").attr('selected', 'selected');
+    $("#elemento-avancado").attr('disabled', true);
+  } else {
+    $("#elemento-avancado option[value='Nenhum']").attr('selected', 'selected');
+    $("#elemento-avancado").attr('disabled', false);
+  }
+});
 $(window).on('load', function (event) {
   // Esconder tipos das qualidades e defeitos
   $('#tipo-comunicacao-animal-wrapper').hide();
@@ -789,10 +1013,21 @@ $(window).on('load', function (event) {
   $('#tipo-vicio-wrapper').hide();
   $('#tipo-deficiencia-wrapper').hide();
   $('#tipo-doenca-wrapper').hide();
-  $('#tipo-doenca-terminal-wrapper').hide(); // Desativar as vilas não finalizadas
+  $('#tipo-doenca-terminal-wrapper').hide(); // Soma no Ko
+
+  $('#nome-duplicado-wrapper').hide();
+  $('#aviso-nome-duplicado').hide();
+  $('#orientacao-sexual-duplicado-wrapper').hide();
+  $('#lateralidade-duplicado-wrapper').hide();
+  $('#aviso-lateralidade-duplicado-wrapper').hide();
+  $('#comida-favorita-duplicado-wrapper').hide();
+  $('#hobby-duplicado-wrapper').hide();
+  $('#substatus-duplicado-wrapper').hide(); // Desativar as vilas não finalizadas
 
   $("#vila option[value='Vila Oculta da Folha (País do Fogo)']").hide();
   $("#vila option[value='Vila Oculta da Nuvem (País do Relâmpago)']").hide();
+  $("#vila option[value='Cidade Shukuba (País do Fogo)']").hide();
+  $("#vila option[value='Cidade Tanzaku (País do Fogo)']").hide();
   $("#cla option[value='Aburame']").hide();
   $("#cla option[value='Akimichi']").hide();
   $("#cla option[value='Hatake']").hide();
@@ -994,17 +1229,25 @@ $(window).on('load', function (event) {
     var ch = 200;
     var st = 200;
     var nome = $('#nome').val();
+    var nomeDuplicado = $('#nome-duplicado').val();
     var sexo = $('#sexo').val();
+    var orientacaoSexual = $('#orientacao-sexual').val();
+    var orientacaoSexualDuplicado = $('#orientacao-sexual-duplicado').val();
     var idade = $('#idade').val();
     var peso = $('#peso').val();
     var altura = $('#altura').val();
     var aniversario = $('#aniversario').val();
     var sangue = $('#sangue').val();
     var lateralidade = $('#lateralidade').val();
+    var lateralidadeDuplicado = $('#lateralidade-duplicado').val();
     var cla = $('#cla').val();
     var origem = $('#vila').val();
     var elementoBasico = $('#elemento-basico').val();
     var elementoAvancado = $('#elemento-avancado').val();
+    var comidaFavorita = $('#comida-favorita').val();
+    var comidaFavoritaDuplicado = $('#comida-favorita-duplicado').val();
+    var hobby = $('#hobbie').val();
+    var hobbyDuplicado = $('#hobby-duplicado').val();
     var kekkeiGenkai = $('#kekkei-genkai').val();
     var personalidade = $('#personalidade').val();
     var aparencia = $('#aparencia').val();
@@ -1031,7 +1274,13 @@ $(window).on('load', function (event) {
     var resistencia = $('#resistencia').val();
     var forca = $('#forca').val();
     var velocidade = $('#velocidade').val();
-    var subject = "Ficha de ".concat(cla, " ").concat(nome);
+    var controleChakraDuplicado = $('#controle-chakra-duplicado').val();
+    var selosDuplicado = $('#selos-duplicado').val();
+    var constituicaoMentalDuplicado = $('#constituicao-mental-duplicado').val();
+    var resistenciaDuplicado = $('#resistencia-duplicado').val();
+    var forcaDuplicado = $('#forca-duplicado').val();
+    var velocidadeDuplicado = $('#velocidade-duplicado').val();
+    var subject = "Ficha de ".concat(kekkeiGenkai === 'Sōma no Kō' ? "".concat(nome, " & ").concat(nomeDuplicado) : "".concat(nome));
     var erros = [];
 
     if (nome === '') {
@@ -1058,6 +1307,24 @@ $(window).on('load', function (event) {
       erros.push('História');
     }
 
+    if (aniversario === 'Indefinido') {
+      erros.push('Aniversário');
+    }
+
+    if (sangue === 'Indefinido') {
+      erros.push('Aniversário');
+    }
+
+    if (lateralidade === 'Indefinido') {
+      erros.push('Aniversário');
+    }
+
+    if (kekkeiGenkai === 'Sōma no Kō') {
+      if (lateralidadeDuplicado === 'Indefinido') {
+        erros.push('Lateralidade do Corpo Secundário');
+      }
+    }
+
     if (erros.length > 0) {
       var erros = erros.toString().split(',').join('\n');
       alert("\xC9 obrigat\xF3rio preencher os seguintes campos:\n\n".concat(erros));
@@ -1079,17 +1346,15 @@ $(window).on('load', function (event) {
     }
 
     if (elementoBasico === 'Doton (Terra)') {
-      elementoBasico = 'Doton';
+      elementoBasico = 'Doton (Afinidade)';
     } else if (elementoBasico === 'Fūton (Vento)') {
-      elementoBasico = 'Fūton';
+      elementoBasico = 'Fūton (Afinidade)';
     } else if (elementoBasico === 'Katon (Fogo)') {
-      elementoBasico = 'Katon';
+      elementoBasico = 'Katon (Afinidade)';
     } else if (elementoBasico === 'Raiton (Trovão)') {
-      elementoBasico = 'Raiton';
+      elementoBasico = 'Raiton (Afinidade)';
     } else if (elementoBasico === 'Suiton (Água)') {
-      elementoBasico = 'Suiton';
-    } else {
-      elementoBasico = 'Nenhum';
+      elementoBasico = 'Suiton (Afinidade)';
     }
 
     for (var qualidade in qualidadesSelecionadas) {
@@ -1138,7 +1403,7 @@ $(window).on('load', function (event) {
 
     var qualidades = qualidadesSelecionadas.toString().split(',').join('\n');
     var defeitos = defeitosSelecionados.toString().split(',').join('\n');
-    var message = "[justify][center][size=18][b]Ficha de ".concat(cla, " ").concat(nome, "[/b][/size][/center]\n\n[b]Nome:[/b] ").concat(nome, "\n[b]Classe:[/b] Ninja\n[b]Sexo:[/b] ").concat(sexo, "\n[b]Idade:[/b] ").concat(idade, " anos\n[b]Peso:[/b] ").concat(peso, " kg\n[b]Altura:[/b] ").concat(altura, " metros\n[b]Anivers\xE1rio:[/b] ").concat(aniversario, "\n[b]Sangue:[/b] ").concat(sangue, "\n[b]Lateralidade:[/b] ").concat(lateralidade, "\n[b]Cl\xE3:[/b] ").concat(cla, "\n[b]Origem:[/b] ").concat(origem, "\n[b]Elemento B\xE1sico:[/b] ").concat(elementoBasico, " (Afinidade)\n[b]Elemento Avan\xE7ado:[/b] ").concat(elementoAvancado, "\n[b]Kekkei Genkai:[/b] ").concat(kekkeiGenkai, "\n[spoiler=\"Personalidade\"]").concat(personalidade, "[/spoiler]\n[spoiler=\"Apar\xEAncia\"]").concat(aparencia, "[/spoiler]\n[spoiler=\"Hist\xF3ria\"]").concat(historia, "[/spoiler]\n[spoiler=\"Conhecimentos\"][/spoiler]\n[spoiler=\"Individualidades\"][b]Qualidades:[/b]\n[color=#009900]").concat(qualidades, "[/color]\n\n[b]Defeitos:[/b]\n[color=#ff0000]").concat(defeitos, "[/color]\n[/spoiler]\n\n[center][b][size=16]Maestrias[/size][/b][/center]\n[b]Ninjutsu: ").concat(ninjutsu, "[/b]\n[b]Taijutsu: ").concat(taijutsu, "[/b]\n[b]Genjutsu: ").concat(genjutsu, "[/b]\n[b]Shurikenjutsu: ").concat(shurikenjutsu, "[/b]\n\n[center][b][size=16]Status[/size][/b][/center]\n[b]HP:[/b] ").concat(hp, " pontos\n[b]CH:[/b] ").concat(ch, " pontos\n[b]ST:[/b] ").concat(st, " pontos\n").concat(cla === 'Yomi' ? '[b]CHMA:[/b] 200 pontos' : '', "\n\n[center][b][size=16]Sub-status[/size][/b][/center]\n[b]Controle de Chakra: ").concat(controleChakra, "[/b]\n[b]Selos: ").concat(selos, "[/b]\n[b]Constitui\xE7\xE3o Mental: ").concat(constituicaoMental, "[/b]\n[b]Resist\xEAncia: ").concat(resistencia, "[/b]\n[b]For\xE7a: ").concat(forca, "[/b]\n[b]Velocidade: ").concat(velocidade, "[/b][/justify]");
+    var message = "[justify][center][size=18][b]Ficha de ".concat(kekkeiGenkai === 'Sōma no Kō' ? "".concat(nome, " & ").concat(nomeDuplicado) : "".concat(nome), "[/b][/size][/center]\n\t\n\t[b]Nome:[/b] ").concat(nome, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(nomeDuplicado) : '', "\n\t[b]Classe:[/b] Ninja\n\t[b]Sexo:[/b] ").concat(sexo, " \n    [b]Orientacao sexual:[/b] ").concat(orientacaoSexual, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(orientacaoSexualDuplicado) : '', "\n\t[b]Idade:[/b] ").concat(idade, " anos\n\t[b]Peso:[/b] ").concat(peso, " kg\n\t[b]Altura:[/b] ").concat(altura, " metros\n\t[b]Anivers\xE1rio:[/b] ").concat(aniversario, "\n\t[b]Sangue:[/b] ").concat(sangue, "\n\t[b]Lateralidade:[/b] ").concat(lateralidade, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(lateralidadeDuplicado) : '', "\n    [b]Comida favorita:[/b] ").concat(comidaFavorita, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(comidaFavoritaDuplicado) : '', "\n    [b]Hobby:[/b] ").concat(hobby, " ").concat(kekkeiGenkai === 'Sōma no Kō' ? "& ".concat(hobbyDuplicado) : '', "\n\t[b]Cl\xE3:[/b] ").concat(cla, "\n\t[b]Origem:[/b] ").concat(origem, "\n\t[b]Elemento B\xE1sico:[/b] ").concat(elementoBasico, "\n\t[b]Elemento Avan\xE7ado:[/b] ").concat(elementoAvancado, "\n\t[b]Kekkei Genkai:[/b] ").concat(kekkeiGenkai, "\n\t[spoiler=\"Personalidade\"]").concat(personalidade, "[/spoiler]\n\t[spoiler=\"Apar\xEAncia\"]").concat(aparencia, "[/spoiler]\n\t[spoiler=\"Hist\xF3ria\"]").concat(historia, "[/spoiler]\n\t[spoiler=\"Conhecimentos\"]\u2022 --;\n\t\u2022 --;\n\t\u2022 --;\n    [/spoiler]\n\t[spoiler=\"Individualidades\"][b]Qualidades:[/b]\n    [color=#009900]").concat(qualidades, "[/color]\n\t\n    [b]Defeitos:[/b]\n\t[color=#ff0000]").concat(defeitos, "[/color][/spoiler]\n\t\n\t[center][b][size=16]Maestrias[/size][/b][/center]\n\t[b]Ninjutsu:[/b] ").concat(ninjutsu, " pontos\n\t[b]Taijutsu:[/b] ").concat(taijutsu, " pontos\n\t[b]Genjutsu:[/b] ").concat(genjutsu, " pontos\n\t[b]Shurikenjutsu:[/b] ").concat(shurikenjutsu, " pontos\n\t\n\t[center][b][size=16]Status[/size][/b][/center]\n\t[b]HP:[/b] ").concat(hp, " pontos\n\t[b]CH:[/b] ").concat(ch, " pontos\n\t[b]ST:[/b] ").concat(st, " pontos\n\t\n\t[center][b][size=16]Sub-status de ").concat(nome, "[/size][/b][/center]\n\t[b]Controle de Chakra:[/b] ").concat(controleChakra, " pontos\n\t[b]Selos:[/b] ").concat(selos, " pontos\n\t[b]Constitui\xE7\xE3o mental:[/b] ").concat(constituicaoMental, " pontos\n\t[b]Resist\xEAncia:[/b] ").concat(resistencia, " pontos\n\t[b]For\xE7a:[/b] ").concat(forca, " pontos\n\t[b]Velocidade:[/b] ").concat(velocidade, " pontos\n    ").concat(kekkeiGenkai === 'Sōma no Kō' ? "[center][b][size=16]Sub-status de ".concat(nomeDuplicado, "[/size][/b][/center]\n\t[b]Controle de Chakra:[/b] ").concat(controleChakraDuplicado, " pontos\n\t[b]Selos:[/b] ").concat(selosDuplicado, " pontos\n\t[b]Constitui\xE7\xE3o mental:[/b] ").concat(constituicaoMentalDuplicado, " pontos\n\t[b]Resist\xEAncia:[/b] ").concat(resistenciaDuplicado, " pontos\n\t[b]For\xE7a:[/b] ").concat(forcaDuplicado, " pontos\n\t[b]Velocidade:[/b] ").concat(velocidadeDuplicado, " pontos") : '', "\n[/justify]");
     var description = 'Sem descrição';
     $.post('/post', {
       f: 11,
@@ -1165,8 +1430,7 @@ $(window).on('load', function (event) {
       localStorage.setItem("constituicao-mental", constituicaoMental);
       localStorage.setItem("resistencia", resistencia);
       localStorage.setItem("forca", forca);
-      localStorage.setItem("velocidade", velocidade);
-      location.href = '/forum';
+      localStorage.setItem("velocidade", velocidade); // location.href = '/forum';
     }).fail(function () {
       alert('Não foi possível enviar a sua ficha. Tente novamente.');
     });
