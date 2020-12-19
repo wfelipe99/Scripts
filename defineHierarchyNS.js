@@ -49,38 +49,34 @@ const response = [
   }
 ] 
  
-function findId(id, arr) {
+function findParent(id, arr) {
   return arr.reduce((a, item) => {
     if (a) return a;
     if (item.id === id) return item;
-    if (item.children) return findId(id, item.children);
+    if (item.children) return findParent(id, item.children);
   }, null);
 }
 
 function defineHierarchy(response) {
   let hierarchy = []
   
+  // Loop through all array
   for (let i = 0; i < response.length; i++) {
-    // Se for root, adiciona direto
+    // If it doesn't have a parent, push to root
     if (response[i].parent_id === 0) hierarchy.push({ ...response[i], children: [] })
 
-    // Checa por filhos
+    // Search for children of response[i]
     for (let k = i + 1; k < response.length; k++) {
-      // Filho encontrado
+      // Child found
       if (response[k].parent_id === response[i].id) {
-        // Se o pai for o root, adiciona direto, já que sei o qual a posição do array adicionar
-        if (response[i].parent_id === 0) {
-          hierarchy[i].children.push({ ...response[k], children: []})
-        } else {
-          const parent = findId(response[k].parent_id, hierarchy)
-          parent.children.push({ ...response[k], children: [] })
-        }
+        // Search for its parent
+        const parent = findParent(response[k].parent_id, hierarchy)
+        // Push to parent's children[]
+        parent.children.push({ ...response[k], children: [] })
       }
-     }
+    }
   }
 
-
-  console.log(hierarchy)
   return hierarchy
 }
 export { defineHierarchy }
