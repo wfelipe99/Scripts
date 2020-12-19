@@ -50,7 +50,7 @@ const response = [
 ] 
  
  // Achei um filho, qual posição devo colocar esse filho? Qual é o pai dele?
- function pushToPosition(hierarchyArray, parentIdToSearchFor, itemToAdd) {
+ function searchAndPushToPosition(hierarchyArray, parentIdToSearchFor, itemToAdd) {
    if (!Array.isArray(hierarchyArray)) return
 
    let newHierarchy = [ ...hierarchyArray]
@@ -64,7 +64,7 @@ const response = [
          break outerLoop
        }
 
-       pushToPosition(hierarchyArray[i].children[k], parentIdToSearchFor)
+       searchAndPushToPosition(hierarchyArray[i].children[k], parentIdToSearchFor)
      }
    }
 
@@ -86,7 +86,7 @@ function defineHierarchy(response) {
         if (response[i].parent_id === 0) {
           hierarchy[i].children.push({ ...response[k], children: []})
         } else {
-          hierarchy = pushToPosition(hierarchy, response[k].parent_id, response[k])
+          hierarchy = searchAndPushToPosition(hierarchy, response[k].parent_id, response[k])
         }
       }
      }
