@@ -1,12 +1,12 @@
-function searchAndPushToParent(parentId, hierarchyArray, childToAdd) {
-  for (let i = 0; i < hierarchyArray.length; i++) {
-    if (!(parentId === hierarchyArray[i].id)) {
-      return searchAndPushToParent(parentId, hierarchyArray[i].children, childToAdd)
+function searchForParent(parentId, arrayToDeepSearch) {
+  for (let i = 0; i < arrayToDeepSearch.length; i++) {
+    if (parentId === arrayToDeepSearch[i].id) {
+      return arrayToDeepSearch[i]
     }
 
-    hierarchyArray[i].children.push({ ...childToAdd, children: []})
+    const parent = searchForParent(parentId, arrayToDeepSearch[i].children)
 
-    break
+    if (parent) return parent
   }
 }
 
@@ -23,7 +23,8 @@ function defineHierarchy(response) {
       // Child found
       if (response[k].parent_id === response[i].id) {
         // Search for the parent and push to children[]
-        searchAndPushToParent(response[k].parent_id, hierarchy, response[k])
+        const parent = searchForParent(response[k].parent_id, hierarchy, response[k])
+        parent.children.push({ ...response[k], children: []})
       }
     }
   }
