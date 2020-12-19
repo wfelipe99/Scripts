@@ -23,7 +23,7 @@ function defineHierarchy(response) {
       // Child found
       if (response[k].parent_id === response[i].id) {
         // Search for the parent and push to children[]
-        const parent = searchForParent(response[k].parent_id, hierarchy, response[k])
+        const parent = searchForParent(response[k].parent_id, hierarchy)
         parent.children.push({ ...response[k], children: []})
       }
     }
