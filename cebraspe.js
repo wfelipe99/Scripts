@@ -18,7 +18,7 @@ candidatos.forEach((value) => {
   notas.push({ inscricao, nome, notaObjetiva, notaDiscursiva, notaTotal })
 })
 
-// Sort array `notas`from top to bottom in order
+// Sort array `notas` from top to bottom in order
 notas.sort((a, b) => b.notaTotal - a.notaTotal)
 
 // Order all candidates
