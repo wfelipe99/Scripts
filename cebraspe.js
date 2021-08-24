@@ -7,15 +7,15 @@ let classificacao = []
 
 // Sum grade
 candidatos.forEach((value) => {
-    const splittedValue = value.split(',')
+  const splittedValue = value.split(',')
 
-    const inscricao = splittedValue[0].trim()
-    const nome = splittedValue[1].trim()
-    const notaObjetiva = Number(splittedValue[2])
-    const notaDiscursiva = Number(splittedValue[3])
-    const notaTotal = notaObjetiva + notaDiscursiva
+  const inscricao = splittedValue[0].trim()
+  const nome = splittedValue[1].trim()
+  const notaObjetiva = Number(splittedValue[2])
+  const notaDiscursiva = Number(splittedValue[3])
+  const notaTotal = notaObjetiva + notaDiscursiva
 
-    notas.push({ inscricao, nome, notaObjetiva, notaDiscursiva, notaTotal })
+  notas.push({ inscricao, nome, notaObjetiva, notaDiscursiva, notaTotal })
 })
 
 // Sort array `notas`from top to bottom in order
@@ -23,5 +23,5 @@ notas.sort((a, b) => b.notaTotal - a.notaTotal)
 
 // Order all candidates
 notas.forEach((value, index) => {
-    console.log(`${index + 1}° colocado: ${value.nome} (Objetiva: ${value.notaObjetiva}, Discursiva: ${value.notaDiscursiva}, Total: ${value.notaTotal})`)
+  console.log(`${index + 1}° colocado: ${value.nome} (Objetiva: ${value.notaObjetiva}, Discursiva: ${value.notaDiscursiva}, Total: ${value.notaTotal})`)
 })
