@@ -1,0 +1,92 @@
+// ==UserScript==
+// @name        Lançar escalas CFO
+// @namespace   Script para preencher todos os dias dos cadetes com I (de integral)
+// @match       https://sgo.cbm.al.gov.br/escalas/gerencia/fazer/*
+// @grant       none
+// @version     1.0
+// @author      Cadete BM Wevelly
+// @description 04/03/2024, 17:33:39
+// @require     https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
+// ==/UserScript==
+
+
+// TODO:
+// Add "OnLoading" status so the user can know when the changes has been completed (check if is any "save_dia" pending)
+// Add Calendar so the escalante can add holidays to "weekends" array
+// Add Calendar so the escalante can say who is in which day of weeknd so he get escalado
+
+$(function() {
+  const forms = $("form[action*='/escalas/gerencia/fazer']");
+  const dataReferencia = $('.col-lg-6 > h2').text()
+  const mesReferencia = dataReferencia.split('-')[1].split('/')[0].trim()
+  const anoReferencia = dataReferencia.split('-')[1].split('/')[1].trim()
+  // Month's index in JS starts at 0, so 0 is January and so on
+  const mes = Number(mesReferencia) - 1
+  const ano = Number(anoReferencia)
+  const weekends = getWeekendsInMonth(ano, mes)
+  const weekendsInDate = weekends.map((date) => date.getDate())
+
+  function atualizarValorComAtraso(i) {
+    // Verifica se ainda há elementos a serem processados
+    if (i < forms.length) {
+      const input = forms.eq(i).find('#DiaLegenda')
+      const dia = Number(forms.eq(i).find('#DiaDia').val())
+
+      // Adiciona um atraso de 1 segundo antes de definir o foco
+      setTimeout(function() {
+
+        // Define o foco no i-ésimo elemento
+        input.trigger('focus');
+
+        // Adiciona um atraso de 1 segundo antes de definir o valor 'I'
+        setTimeout(function() {
+          // Define o valor 'I' para o i-ésimo elemento
+          // Verifica se o dia é final de semana
+          if (weekendsInDate.includes(dia)) {
+            console.log(`${dia} é um final de semana`)
+            input.val('');
+          } else {
+            console.log(`${dia} não é um final de semana`)
+            input.val('I');
+          }
+
+          // Adiciona um atraso de 1 segundo antes de remover o foco do i-ésimo elemento
+          setTimeout(function() {
+            // Remove o foco do i-ésimo elemento
+            input.trigger('blur');
+
+            // Adiciona um atraso de 1 segundo antes de chamar a função para o próximo elemento
+            setTimeout(function() {
+              // Chama recursivamente a função para o próximo elemento
+              atualizarValorComAtraso(i + 1);
+            }, 100); // Ajuste o valor do atraso conforme necessário
+          }, 100); // Ajuste o valor do atraso conforme necessário
+        }, 100); // Ajuste o valor do atraso conforme necessário
+      }, 100); // Ajuste o valor do atraso conforme necessário
+
+    }
+  }
+
+  // Inicia o processo chamando a função para o primeiro elemento (índice 0)
+  atualizarValorComAtraso(2);
+});
+
+function getWeekendsInMonth(year, month) {
+  const weekends = [];
+
+  // Começa do primeiro dia do mês
+  const currentDate = new Date(year, month, 1);
+
+  // Itera pelos dias do mês
+  while (currentDate.getMonth() === month) {
+    // Verifica se o dia é um sábado (6) ou domingo (0)
+    if (currentDate.getDay() === 0 || currentDate.getDay() === 6) {
+      weekends.push(new Date(currentDate));
+    }
+
+    // Avança para o próximo dia
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return weekends;
+}
